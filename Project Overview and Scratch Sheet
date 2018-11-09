@@ -1,0 +1,12 @@
+Function Shortlist
+
+Dependencies: Lindsay's hapMap2numeric function and numeric2structure function (https://github.com/lvclark/R_genetics_conv)
+-Function to generate mainparams and extraparams file
+-Function to write bash scripts that run structure on HPCCs
+
+-Function to define S3 class for Structure results and import the results (i.e. individual ancestry frequencies and allelewise ancestry frequencies)
+-If possible: function to average ancestry estimates across runs of structure (replications) which can detect which column contains which population
+-Function to generate bar graphs for Structure results, including options to order by Q or use custom ordering
+-If we have time: function to map pie charts of structure results by latitude and longitude (dependency: raster)
+-Function to filter the allelewise ancestry frequencies into sets which meet a given threshold of ancestry in group n
+-Function to get a vector of individual names which meet a given threshold of ancestry in group n (e.g. individuals less than 10% admixed)
