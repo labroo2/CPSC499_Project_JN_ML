@@ -31,7 +31,7 @@ mainparams <- function(maxpops, burnin, numreps, infile, outfile, numinds, numlo
   if(is.na(missing) == TRUE) warning("Missing must be a number that does not occur elsewhere in the dataset, not NA.")
   
   #make sure numind and numloci are integers for printing purposes
-  numind <- as.integer(numinds)
+  numinds <- as.integer(numinds)
   numloci <- as.integer(numloci)
   
   #paste together the error-checked output file
