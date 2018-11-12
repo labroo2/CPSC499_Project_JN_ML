@@ -22,7 +22,7 @@ mainparams <- function(maxpops, burnin, numreps, infile, outfile, numinds, numlo
   names(binary_options) <- c("onerowperind", "label", "popdata", "popflag", "locdata", "phenotype", "markernames", "recessivealleles", 
                              "mapdistances", "phased", "phaseinfo", "markovphase")
   for(i in 1:length(binary_options)){
-    if(binary_options[i] != 0 && binary_options[i] != 1) stop(paste(names(binary_options[i])), " must be 0 or 1.")
+    if(binary_options[i] != 0 && binary_options[i] != 1 && is.na(binary_options[i]) == FALSE) stop(paste(names(binary_options[i])), " must be 0 or 1.")
   }
   
   #notify the user that missing is usually set to -9, 0 may not mean missing data, and NA is not acceptable
@@ -35,30 +35,19 @@ mainparams <- function(maxpops, burnin, numreps, infile, outfile, numinds, numlo
   numloci <- as.integer(numloci)
   
   #paste together the error-checked output file
-  mainparams_out <- cat(paste("#define OUTFILE", outfile, sep = " "),
-      paste("#define INFILE", infile, sep = " "),
-      paste("#define NUMINDS", numinds, sep = " "),
-      paste("#define NUMLOCI", numloci, sep = " "),
-      paste("#define LABEL", label, sep = " "),
-      paste("#define POPDATA", popdata, sep = " "),
-      paste("#define POPFLAG", popflag, sep = " "),
-      paste("#define LOCDATA", locdata, sep = " "),
-      paste("#define PHENOTYPE", phenotype, sep = " "),
-      paste("#define MARKERNAMES", markernames, sep = " "),
-      paste("#define MAPDISTANCES", mapdistances, sep = " "),
-      paste("#define ONEROWPERIND", onerowperind, sep = " "),
-      paste("#define PHASEINFO", phaseinfo, sep = " "),
-      paste("#define PHASED", phased, sep = " "),
-      paste("#define RECESSIVEALLELES", recessivealleles, sep = " "),
-      paste("#define EXTRACOLS", extracols, sep = " "),
-      paste("#define MISSING", missing, sep = " "),
-      paste("#define PLOIDY", ploidy, sep = " "),
-      paste("#define MAXPOPS", maxpops, sep = " "),
-      paste("#define BURNIN", burnin, sep = " "),
-      paste("#define NUMREPS", numreps, sep = " "),
-      paste("#define PHASED", phased, sep = " "),
-      paste("#define PHASEINFO", phaseinfo, sep = " "),
-      paste("#define MARKOVPHASE", markovphase, sep = " "),
-      paste("#define NOTAMBIGUOUS", notambiguous, sep = " "),
-      sep = "\n", file = "mainparams")
+  object_list <- c(infile, outfile, numinds, numloci, label, popdata, popflag, locdata, phenotype, markernames, mapdistances, onerowperind, phaseinfo, phased, recessivealleles,
+                   extracols, missing, ploidy, maxpops, burnin, numreps, markovphase, notambiguous)
+  names(object_list) <- c("#define INFILE", "#define OUTFILE", "#define NUMINDS", "#define NUMLOCI", "#define LABEL", "#define POPDATA",
+                          "#define POPFLAG", "#define LOCDATA", "#define PHENOTYPE", "#define MARKERNAMES", "#define MAPDISTANCES",
+                          "#define ONEROWPERIND", "#define PHASEINFO", "#define PHASED", "#define RECESSIVEALLELES",
+                          "#define EXTRACOLS", "#define MISSING", "#define PLOIDY", "#define MAXPOPS", "#define BURNIN",
+                          "#define NUMREPS", "#define MARKOVPHASE", "#define NOTAMBIGUOUS")
+  object_list <- object_list[is.na(object_list) == FALSE] #remove parameters the user is not interested in specifying
+
+  holder <- c()
+  for(i in 1:length(object_list)){
+    holder[i] <- paste(names(object_list)[i], object_list[i], sep = " ")
+  }
+  #concatenate
+  cat(holder, sep = "\n", file = "mainparams")
 }
