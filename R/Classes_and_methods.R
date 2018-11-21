@@ -1,5 +1,7 @@
-file2 <- "../../Final_Project/Structure/Structure/3kcomp_filtered_full_default50000_k2r1_f"
-file <- "../../Final_Project/Structure/Structure/3kcomp_filtered_full_default50000_k3r1_f"
+#file2 <- "../../Final_Project/Structure/Structure/3kcomp_filtered_full_default50000_k2r1_f"
+#file <- "../../Final_Project/Structure/Structure/3kcomp_filtered_full_default50000_k3r1_f"
+
+#input is the path to structure output file
 deStruct <- function(file){
   #open the connection to a structure file
   mycon <- file(file, open = "r")
@@ -43,12 +45,28 @@ deStruct <- function(file){
   
   ###INFERRERD ANCESTRY OF INDIVIDUALS#####
   ancestry <- grep("Inferred ancestry of individuals:", mylines)
+  #get the inferred ancestry by the number of individuals in run parameters
   number_of_individuals <- as.integer(run_parameters$Value[run_parameters$parameter == "individuals"])
-  ancestry_val <- mylines[(ancestry+1):(ancestry+ number_of_individuals)]
-  ancestry_val <- strsplit(ancestry_val, " ")
-  ancestry_value <- t(sapply(ancestry_val, function(x) x[x != ""]))
+  ancestry_val <- mylines[(ancestry+2):(ancestry+ number_of_individuals+1)]#remove the header line
+  #there is alot of white spaces so split by colon to deal with white spaces
+  ancestry_val <- strsplit(ancestry_val, ":")
+  ancestry_val <- t(sapply(ancestry_val, function(x) trimws(x, which = "both")))
+  ancestry_value <- matrix(,nrow = number_of_individuals,ncol = 0)
+  for(col in 1:ncol(ancestry_val)){
+    ancestry_val1 <- t(sapply(strsplit(ancestry_val[,col], " "), function(x) x[x != ""]))
+    ancestry_value <- cbind(ancestry_value,ancestry_val1)
+  }
+  ####!!!!!!!!!!!!!Work in progress the ancestry value matrix is as a string !!!!!!!!!!!###################
+  ###Estimated Allele Frequency###
+  allele_start <- grep("Estimated Allele Frequencies in each cluster", mylines)
+  allele_end <- grep("Values of parameters used in structure:", mylines)
+  allele_freq <- mylines[(allele_start+4):(allele_end -2)]
+  #subset this by the empty line beween each loci
+
   close(mycon)
-  return(list(run_parameters,infered_cluster,expected_heterozygosity,mean_FST_value))
+  structure_output <- list(run_parameters = run_parameters, infered_clusters = infered_cluster, 
+                           HE = expected_heterozygosity, FST= mean_FST_value, ancestry_values = ancestry_value)
+  return(structure_output)
 }
-deStruct(file3)
-head(stru)
+#deStruct(file2)
+
