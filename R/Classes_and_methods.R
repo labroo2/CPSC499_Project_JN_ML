@@ -1,4 +1,4 @@
-#file2 <- "../../Final_Project/Structure/Structure/3kcomp_filtered_full_default50000_k2r1_f"
+file2 <- "../../Final_Project/Structure/Structure/3kcomp_filtered_full_default50000_k2r1_f"
 file <- "../../Final_Project/Structure/Structure/3kcomp_filtered_full_default50000_k3r1_f"
 
 #input is the path to structure output file
@@ -17,7 +17,7 @@ deStruct <- function(file){
   run_params <- strsplit(gsub(" ","",run_params), " ")
   run_parameters <- data.frame(parameter=gsub("[[:digit:]]","",run_params),
                                Value=gsub("([[:alpha:]]|[[:punct:]])","",run_params),stringsAsFactors = FALSE)
-  
+
   ###Determine the number of clusters###
   infered <- grep("Inferred Clusters", mylines)
   infered_clus <- mylines[(infered+1):(infered+2)]
@@ -62,17 +62,20 @@ deStruct <- function(file){
   ancestry_value <- data.frame(ancestry_value)
   #Add column names to the dataframe
   colnames(ancestry_value) <- c("percent_missing",paste("cluster_",1:length(infered_cluster$cluster),sep = ""))
+  
   ###Estimated Allele Frequency###
   allele_start <- grep("Estimated Allele Frequencies in each cluster", mylines)
   allele_end <- grep("Values of parameters used in structure:", mylines)
   allele_freq <- mylines[(allele_start+4):(allele_end -2)]
   #subset this by the empty line beween each loci
-  
-
   close(mycon)
   structure_output <- list(run_parameters = run_parameters, infered_clusters = infered_cluster, 
                            HE = expected_heterozygosity, FST= mean_FST_value, ancestry_values = ancestry_value)
+
+  # assign class
+  class(structure_output) <- c("destruct", class(structure_output))
   return(structure_output)
 }
-deStruct(file2)
-
+x <- deStruct(file3)
+class(x)
+x$infered_clusters
