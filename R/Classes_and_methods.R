@@ -97,8 +97,8 @@ deStruct <- function(file){
   #subset this by the empty line beween each loci
   close(mycon)
   structure_output <- list(run_parameters = run_parameters, infered_clusters = infered_cluster, 
-                           HE = expected_heterozygosity, FST= mean_FST_value, ancestry_values = ancestry_value,
-                           Estimate_allele_frequency = allele_frequency)
+                           HE = expected_heterozygosity, FST= mean_FST_value, individual_ancestry_frequencies = ancestry_value,
+                           allelewise_ancestry_frequency = allele_frequency)
 
   # assign class
   class(structure_output) <- c("destruct", class(structure_output))
