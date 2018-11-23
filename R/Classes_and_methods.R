@@ -1,5 +1,5 @@
-#file2 <- "../../Final_Project/Structure/Structure/3kcomp_filtered_full_default50000_k2r1_f"
-#file <- "../../Final_Project/Structure/Structure/3kcomp_filtered_full_default50000_k3r1_f"
+file2 <- "../../Final_Project/Structure/Structure/3kcomp_filtered_full_default50000_k2r1_f"
+file3 <- "../../Final_Project/Structure/Structure/3kcomp_filtered_full_default50000_k3r1_f"
 
 #input is the path to structure output file
 deStruct <- function(file){
@@ -67,15 +67,45 @@ deStruct <- function(file){
   allele_start <- grep("Estimated Allele Frequencies in each cluster", mylines)
   allele_end <- grep("Values of parameters used in structure:", mylines)
   allele_freq <- mylines[(allele_start+4):(allele_end -2)]
-  #####THIS IS A WORK IN PROGRESS###
+  allele_freq <- trimws(allele_freq, which = "both")
+  length(allele_freq)
+  #remove newline characters = empty characeter strings
+  allele_freq <- allele_freq[allele_freq != ""]
+  #subset the various elements into string vectors 
+  Locus_index <- grep("Locus", allele_freq)
+  Locus <- allele_freq[Locus_index]
+  missing_data <- allele_freq[Locus_index+2]
+  Allele_A <- allele_freq[Locus_index+3]
+  Allele_B <- allele_freq[Locus_index+4]
+  #get the locus string into a matrix
+  Locus_split <- strsplit(Locus, " ")
+  Locus_final <- t(sapply(Locus_split, function(x) x[x !=":"]))
+  #get the missing data well formatted
+  missing <- trimws(gsub("([[:alpha:]]|%)","",missing_data), which = "both")
+  #format Allele_A and b
+  Allele_A_split <- t(sapply(strsplit(Allele_A, " "), function(x) x[x != ""]))
+  Allele_A_split[,2] <- gsub("(\\(|\\))", "", Allele_A_split[,2])
+  Allele_B_split <- t(sapply(strsplit(Allele_B, " "), function(x) x[x != ""]))
+  Allele_B_split[,2] <- gsub("(\\(|\\))", "", Allele_B_split[,2])
+  #Order alele A and B appropriately
+  #make a coppy of both files and ensure allele one and two are well ordered
+  Allele_1 <- Allele_A_split
+  Allele_2 <- Allele_B_split
+  Allele_1[which(Allele_A_split[,1] == 2),] <- Allele_B_split[which(Allele_A_split[,1] == 2),]
+  Allele_2[which(Allele_B_split[,1] == 1),] <- Allele_A_split[which(Allele_B_split[,1] == 1),]
+  #combine this to a datafframe
+  allele_frequency <- cbind(Locus_final,missing,Allele_1,Allele_2)
+  allele_frequency <- as.data.frame(allele_frequency) 
+  
   #subset this by the empty line beween each loci
   close(mycon)
   structure_output <- list(run_parameters = run_parameters, infered_clusters = infered_cluster, 
-                           HE = expected_heterozygosity, FST= mean_FST_value, ancestry_values = ancestry_value)
+                           HE = expected_heterozygosity, FST= mean_FST_value, ancestry_values = ancestry_value,
+                           Estimate_allele_frequency = allele_frequency)
 
   # assign class
   class(structure_output) <- c("destruct", class(structure_output))
   return(structure_output)
 }
-#x <- deStruct(file3)
+x <- deStruct(file2)
 
