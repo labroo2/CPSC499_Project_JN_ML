@@ -1,6 +1,3 @@
-file2 <- "../../Final_Project/Structure/Structure/3kcomp_filtered_full_default50000_k2r1_f"
-file3 <- "../../Final_Project/Structure/Structure/3kcomp_filtered_full_default50000_k3r1_f"
-
 #input is the path to structure output file
 deStruct <- function(file){
   #open the connection to a structure file
@@ -51,7 +48,7 @@ deStruct <- function(file){
   #there is alot of white spaces so split by colon to deal with white spaces
   ancestry_val <- strsplit(ancestry_val, ":")
   ancestry_val <- t(sapply(ancestry_val, function(x) trimws(x, which = "both")))
-  ancestry_value <- matrix(,nrow = number_of_individuals,ncol = 0)
+  ancestry_value <- matrix( ,nrow = number_of_individuals,ncol = 0)
   for(col in 1:ncol(ancestry_val)){
     ancestry_val1 <- t(sapply(strsplit(ancestry_val[,col], " "), function(x) x[x != ""]))
     ancestry_value <- cbind(ancestry_value,ancestry_val1)
@@ -107,5 +104,4 @@ deStruct <- function(file){
   class(structure_output) <- c("destruct", class(structure_output))
   return(structure_output)
 }
-x <- deStruct(file2)
 
