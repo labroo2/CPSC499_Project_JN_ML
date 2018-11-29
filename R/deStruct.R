@@ -25,7 +25,7 @@ deStruct <- function(file){
   
   ###Expected Heterozygosity###
   E_heterozygosity <- grep("expected heterozygosity", mylines)
-  heterozygosity <- mylines[(E_heterozygosity+1):(E_heterozygosity + length(infered_cluster$cluster))]
+  heterozygosity <- mylines[(E_heterozygosity+1):(E_heterozygosity + length(inferred_cluster$cluster))]
   heterozygosity <- strsplit(heterozygosity, " ")
   heterozygosity <- t(sapply(heterozygosity, function(x) x[x != ""]))
   expected_heterozygosity <- as.data.frame(heterozygosity[,c(2,4)])
