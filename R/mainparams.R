@@ -1,3 +1,4 @@
+#this function generates the mainparams file needed for STRUCTURE
 mainparams <- function(maxpops, burnin, numreps, infile, outfile, numinds, numloci, ploidy, missing, onerowperind, label, popdata,
                        popflag, locdata, phenotype, extracols, markernames, recessivealleles, mapdistances,
                        phased, phaseinfo, markovphase, notambiguous){
@@ -28,7 +29,7 @@ mainparams <- function(maxpops, burnin, numreps, infile, outfile, numinds, numlo
   #notify the user that missing is usually set to -9, 0 may not mean missing data, and NA is not acceptable
   if(missing != -9) warning("By convention, missing is usually set to -9, though any value that doesn't occur elsewhere in the dataset is OK.")
   if(missing == 0) warning("Are you sure that 0 indicates missing data in your dataset?")
-  if(is.na(missing) == TRUE) warning("Missing must be a number that does not occur elsewhere in the dataset, not NA.")
+  if(is.na(missing) == TRUE) stop("missing data value must be a number that does not occur elsewhere in the dataset, not NA.")
   
   #make sure numind and numloci are integers for printing purposes
   numinds <- as.integer(numinds)
@@ -42,7 +43,7 @@ mainparams <- function(maxpops, burnin, numreps, infile, outfile, numinds, numlo
                           "#define ONEROWPERIND", "#define PHASEINFO", "#define PHASED", "#define RECESSIVEALLELES",
                           "#define EXTRACOLS", "#define MISSING", "#define PLOIDY", "#define MAXPOPS", "#define BURNIN",
                           "#define NUMREPS", "#define MARKOVPHASE", "#define NOTAMBIGUOUS")
-  object_list <- object_list[is.na(object_list) == FALSE] #remove parameters the user is not interested in specifying
+  object_list <- object_list[is.null(object_list) == FALSE] #remove parameters the user is not interested in specifying
 
   holder <- c()
   for(i in 1:length(object_list)){

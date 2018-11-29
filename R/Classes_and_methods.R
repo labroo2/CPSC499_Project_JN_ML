@@ -1,13 +1,13 @@
-#input is the path to structure output file
+#this function takes a filename corresponding to STRUCTURE output and creates an object of the class deStruct
 deStruct <- function(file){
   #open the connection to a structure file
   mycon <- file(file, open = "r")
-  mylines <- readLines(mycon, warn = FALSE)#readlines (warn=FALSE because the structure files have a missing  End of line marker that throws a warning)
-  #QC for structure file
+  mylines <- readLines(mycon, warn = FALSE)#warn=FALSE because STRUCTURE files have a missing  End of line marker that throws a warning
+  #spot-check that a STRUCTURE file was input
   if(sum(grepl("STRUCTURE by Pritchard", mylines)) == 0){
-    stop("The file does not appear to be a structure file")
+    stop("The file does not appear to be a STRUCTURE file")
   } 
-  #PARSE THE FILE GETTING DATA INTO APPROPRIATE DATA STRUCTURES
+  #PARSE THE FILE AND PUT DATA INTO APPROPRIATE STRUCTURES
   #get the run parameters
   run_param <- grep("Run parameters:", mylines)
   run_params <- mylines[(run_param+1):(run_param+5L)]
@@ -16,12 +16,12 @@ deStruct <- function(file){
                                Value=gsub("([[:alpha:]]|[[:punct:]])","",run_params),stringsAsFactors = FALSE)
 
   ###Determine the number of clusters###
-  infered <- grep("Inferred Clusters", mylines)
-  infered_clus <- mylines[(infered+1):(infered+2)]
-  infered_clus <- strsplit(infered_clus, " ")
-  infered_clus <- sapply(infered_clus, function(x) x[x != ""])
-  infered_cluster <- as.data.frame(infered_clus)
-  colnames(infered_cluster) <-c("cluster","proportion")
+  inferred <- grep("Inferred Clusters", mylines)
+  inferred_clus <- mylines[(inferred+1):(inferred+2)]
+  inferred_clus <- strsplit(inferred_clus, " ")
+  inferred_clus <- sapply(inferred_clus, function(x) x[x != ""])
+  inferred_cluster <- as.data.frame(inferred_clus)
+  colnames(inferred_cluster) <-c("cluster","proportion")
   
   ###Expected Heterozygosity###
   E_heterozygosity <- grep("expected heterozygosity", mylines)
@@ -33,7 +33,7 @@ deStruct <- function(file){
   
   ###FST values###
   FST <- grep("Mean value of Fst_1", mylines)
-  FST_values <- mylines[FST:(FST + length(infered_cluster$cluster)-1)]
+  FST_values <- mylines[FST:(FST + length(inferred_cluster$cluster)-1)]
   FST_values <- strsplit(FST_values, "=")
   FST_values <- t(sapply(FST_values, function(x)  x[x != ""]))
   #remove white spaces to the right
@@ -58,7 +58,7 @@ deStruct <- function(file){
   ancestry_value[,1]<- gsub("[[:punct:]]","",ancestry_value[,1])
   ancestry_value <- data.frame(ancestry_value)
   #Add column names to the dataframe
-  colnames(ancestry_value) <- c("percent_missing",paste("cluster_",1:length(infered_cluster$cluster),sep = ""))
+  colnames(ancestry_value) <- c("percent_missing",paste("cluster_",1:length(inferred_cluster$cluster),sep = ""))
   
   ###Estimated Allele Frequency###
   allele_start <- grep("Estimated Allele Frequencies in each cluster", mylines)
@@ -84,19 +84,19 @@ deStruct <- function(file){
   Allele_A_split[,2] <- gsub("(\\(|\\))", "", Allele_A_split[,2])
   Allele_B_split <- t(sapply(strsplit(Allele_B, " "), function(x) x[x != ""]))
   Allele_B_split[,2] <- gsub("(\\(|\\))", "", Allele_B_split[,2])
-  #Order alele A and B appropriately
-  #make a coppy of both files and ensure allele one and two are well ordered
+  #Order allele A and B appropriately
+  #make a copy of both files and ensure allele one and two are well ordered
   Allele_1 <- Allele_A_split
   Allele_2 <- Allele_B_split
   Allele_1[which(Allele_A_split[,1] == 2),] <- Allele_B_split[which(Allele_A_split[,1] == 2),]
   Allele_2[which(Allele_B_split[,1] == 1),] <- Allele_A_split[which(Allele_B_split[,1] == 1),]
-  #combine this to a datafframe
+  #combine this to a dataframe
   allele_frequency <- cbind(Locus_final,missing,Allele_1,Allele_2)
   allele_frequency <- as.data.frame(allele_frequency) 
   
   #subset this by the empty line beween each loci
   close(mycon)
-  structure_output <- list(run_parameters = run_parameters, infered_clusters = infered_cluster, 
+  structure_output <- list(run_parameters = run_parameters, inferred_clusters = inferred_cluster, 
                            HE = expected_heterozygosity, FST= mean_FST_value, individual_ancestry_frequencies = ancestry_value,
                            allelewise_ancestry_frequency = allele_frequency)
 
