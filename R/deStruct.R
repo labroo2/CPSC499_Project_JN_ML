@@ -1,3 +1,4 @@
+file <- "../../Final_Project/Structure/Structure/3kcomp_filtered_full_default50000_k2r1_f"
 #this function takes a filename corresponding to STRUCTURE output and creates an object of the class deStruct
 deStruct <- function(file){
   #open the connection to a structure file
@@ -91,8 +92,11 @@ deStruct <- function(file){
   Allele_1[which(Allele_A_split[,1] == 2),] <- Allele_B_split[which(Allele_A_split[,1] == 2),]
   Allele_2[which(Allele_B_split[,1] == 1),] <- Allele_A_split[which(Allele_B_split[,1] == 1),]
   #combine this to a dataframe
-  allele_frequency <- cbind(Locus_final,missing,Allele_1,Allele_2)
-  allele_frequency <- as.data.frame(allele_frequency) 
+  allele_frequency <- cbind(Locus_final[,3],missing,Allele_1,Allele_2)
+  allele_frequency <- as.data.frame(allele_frequency)
+  colnames(allele_frequency) <- c("Locus","missing","Allele_1","Proportion_A1",
+                                  "Allele1_clust1","Allele1_clust2","Allele_2","Proportion_A2",
+                                  "Allele2_clust1","Allele2_clust2")
   
   #subset this by the empty line beween each loci
   close(mycon)
