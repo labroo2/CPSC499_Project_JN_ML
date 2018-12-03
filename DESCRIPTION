@@ -2,12 +2,10 @@ Package: DeStruct
 Version: 0.0
 Date: 2018-12-03
 Title: An S3 Class to work with structure files
-Authors@R: c(person("Marlee", "Labroo", email = "labroo2@illinois.edu",
-                  role = c("aut", "cre")),
-                  person("Joyce", "Njuguna", email = "njuguna2@illinois.edu",
-                  role = c("aut", "cre")))
-Maintainer: Marlee Labroo <labroo2@illinois.edu>
-Imports:reshape, ggplots2, viridis
+Authors@R: person("Marlee", "Labroo", email = "labroo2@illinois.edu",
+                  role = c("aut", "cre"))
+Maintainer:Joyce Njuguna <njuguna2@illinois.edu> 
+Imports:reshape, ggplot2, viridis
 Description: This is a S3 class, to parse a structure file and run various analysis
 License: GPL-3
 URL: https://github.com/labroo2/CPSC499_Project_JN_ML

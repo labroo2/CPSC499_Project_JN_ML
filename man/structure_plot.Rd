@@ -1,6 +1,6 @@
 \name{structure_plot}
 \alias{structure_plot}
-\alias(structure_plot.destruct)
+\alias{structure_plot.destruct}
 \title{
 Plots 
 }
