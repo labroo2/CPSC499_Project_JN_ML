@@ -1,4 +1,5 @@
-export(destruct, proteinLength, print)
+export(deStruct, structure_plots, extraparams, mainparams, structure_scriptwriter)
+
 
 S3method(proteinLength, destruct)
 S3method(print, destruct)
