@@ -1,0 +1,4 @@
+export(destruct, proteinLength, print)
+
+S3method(proteinLength, destruct)
+S3method(print, destruct)
