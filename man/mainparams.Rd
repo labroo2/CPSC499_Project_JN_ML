@@ -5,7 +5,7 @@
 mainparams
 }
 \description{
-This functions generates the mainparams file needed for the program STRUCTURE v 2.3. The flag descriptions are taken from the STRUCTURE documentation.
+This functions generates the mainparams file needed for the program STRUCTURE v 2.3. The flag descriptions are taken from the STRUCTURE documentation. Note that options described as Boolean here take values of 1 and 0, where 1 = Yes and 0 = No-- not TRUE and FALSE.
 }
 \usage{
 mainparams(maxpops, burnin, numreps, infile, outfile, numinds, numloci, ploidy, missing, onerowperind, label, popdata, popflag, locdata, phenotype, extracols, markernames, recessivealleles, mapdistances, phased, phaseinfo, markovphase, notambiguous)
