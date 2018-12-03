@@ -65,7 +65,7 @@ Specify a basename for the scripts which will be output from this function, and 
 \references{
 https://web.stanford.edu/group/pritchardlab/structure.html
 
-Falush, D., Stephens, M. & Pritchard, J. K. Inference of population structure using multilocus genotype data: linked loci and correlated allele frequencies. Genetics 164, 1567–1587 (2003)
+Falush, D., Stephens, M. & Pritchard, J. K. Inference of population structure using multilocus genotype data: linked loci and correlated allele frequencies. Genetics 164, 1567-1587 (2003)
 }
 \author{
 Marlee Labroo & Joyce Njuguna
@@ -79,12 +79,3 @@ Marlee Labroo & Joyce Njuguna
 \seealso{
 %% ~~objects to See Also as \code{\link{help}}, ~~~
 }
-\examples{
-slurm_header <- paste("#!/bin/bash", "#SBATCH -p normal",
-                    "#SBATCH --mem=4g", collapse = "\n")
-structure_scriptwriter(task_manager = slurm_header, module = "Structure-2.3.2", populations = 10, input_file = "my_structure_file.txt", output_file_base = "run1_admixture_default50000", reps_per_k = 3, script_basename = "struct"
-}
-% Add one or more standard keywords, see file 'KEYWORDS' in the
-% R documentation directory.
-\keyword{ ~kwd1 }% use one of  RShowDoc("KEYWORDS")
-\keyword{ ~kwd2 }% __ONLY ONE__ keyword per line

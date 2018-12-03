@@ -34,6 +34,3 @@ Allelewise ancestry frequency
 \author{
 Joyce Njuguna and Marlee Labroo
 }
-\seealso{
-%% ~~objects to See Also as \code{\link{help}}, ~~~
-}
