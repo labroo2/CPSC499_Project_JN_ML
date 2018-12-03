@@ -1,7 +1,15 @@
 \name{deStruct}
 \alias{deStruct}
 \title{
-The function parses a structure file storing the individual and loci ancestry information into a S3 class object 
+Parse STRUCTURE output files   
+}
+\description{
+This function parses structure output storing Run parameters 
+Inferred clusters 
+Expected heterozygosity
+Mean FST value
+Individual ancestry frequencies 
+and Allelewise ancestry frequency information into a S3 class object
 }
 \usage{
 deStruct(file)
@@ -9,12 +17,18 @@ deStruct(file)
 %- maybe also 'usage' for other objects documented here.
 \arguments{
   \item{file}{
-This is the path to a structure file
+This is the path to a structure file.
 }
 }
 
 \value{
-An object of the class "destruct", which comproises of a list that has the various information in a structure file.
+An object of the class "destruct", which comprises of a list that has the various information in a structure file: 
+Run parameters 
+Inferred clusters 
+Expected heterozygosity
+Mean FST value
+Individual ancestry frequencies 
+Allelewise ancestry frequency
 }
 
 \author{
@@ -24,13 +38,10 @@ Joyce Njuguna and Marlee Labroo
 %% ~~objects to See Also as \code{\link{help}}, ~~~
 }
 \examples{
-##---- Should be DIRECTLY executable !! ----
-##-- ==>  Define data, use random,
-##--	or do  help(data=index)  for the standard data sets.
 
-## The function is currently defined as
 # get the example structure file that comes with deStruct
-structure <- system.file("data", "", package = "destruct")
+structure <- system.file("data", "Longi_admixcut045_default50000k2rl_f", package = "destruct")
+#parse the file using destruct function
 deStruct(structure)
 
 }

@@ -1,3 +1,6 @@
+structure_plot <- function(object, ...){
+  UseMethod("structure_plot", object)
+}
 structure_plot.destruct <- function(object, ...){
   require(reshape)
   require(ggplot2)
