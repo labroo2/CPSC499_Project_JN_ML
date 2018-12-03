@@ -30,7 +30,7 @@ Joyce Njuguna and Marlee Labroo
 
 ## The function is currently defined as
 # get the example structure file that comes with deStruct
-structure <- system.file("data", "example_structure.txt", package = "destruct")
+structure <- system.file("data", "", package = "destruct")
 deStruct(structure)
 
 }
