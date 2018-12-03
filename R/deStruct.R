@@ -1,4 +1,4 @@
-#file <- "../../Final_Project/Structure/Structure/3kcomp_filtered_full_default50000_k2r1_f"
+file <- "../../Final_Project/Structure/Structure/3kcomp_filtered_full_default50000_k2r1_f"
 #this function takes a filename corresponding to STRUCTURE output and creates an object of the class deStruct
 deStruct <- function(file){
   #open the connection to a structure file
@@ -66,7 +66,6 @@ deStruct <- function(file){
   allele_end <- grep("Values of parameters used in structure:", mylines)
   allele_freq <- mylines[(allele_start+4):(allele_end -2)]
   allele_freq <- trimws(allele_freq, which = "both")
-  length(allele_freq)
   #remove newline characters = empty characeter strings
   allele_freq <- allele_freq[allele_freq != ""]
   #subset the various elements into string vectors 
