@@ -37,11 +37,3 @@ Joyce Njuguna and Marlee Labroo
 \seealso{
 %% ~~objects to See Also as \code{\link{help}}, ~~~
 }
-\examples{
-
-# get the example structure file that comes with deStruct
-structure <- system.file("data", "Longi_admixcut045_default50000k2rl_f", package = "deStructure")
-#parse the file using destruct function
-deStruct(structure)
-
-}

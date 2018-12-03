@@ -34,7 +34,7 @@ inferred_clusters = c("X","y"),
 HE = c(0.5,0.25), FST= 0.75, 
 individual_ancestry_frequencies = data.frame(percent_missing=c(28,29,30,31),
 Cluster_1=c(0.99,0.98,0.1,0.3),Cluster_2=c(0.01,0.02,0.9,0.7), 
-row.names=c("A","B","C","D"))
+row.names=c("A","B","C","D"),
 allelewise_ancestry_frequency = c("x","Y"))
 
 #plot the ancestry

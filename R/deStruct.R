@@ -1,5 +1,3 @@
-#file <- "../../Final_Project/Structure/Structure/3kcomp_filtered_full_default50000_k2r1_f"
-#file <- "data/longi_admixcut045_default50000k2r1_f"
 #this function takes a filename corresponding to STRUCTURE output and creates an object of the class deStruct
 deStruct <- function(file){
   #open the connection to a structure file
