@@ -95,12 +95,13 @@ deStruct <- function(file){
   colnames(allele_frequency) <- c("Locus","missing","Allele_1","Proportion_A1",
                                   "Allele1_clust1","Allele1_clust2","Allele_2","Proportion_A2",
                                   "Allele2_clust1","Allele2_clust2")
-  
+  #colnames(allele_frequency) <- c("Locus","missing",paste("cluster_",1:length(inferred_cluster$cluster),sep = ""))
   #subset this by the empty line beween each loci
   close(mycon)
   structure_output <- list(run_parameters = run_parameters, inferred_clusters = inferred_cluster, 
                            HE = expected_heterozygosity, FST= mean_FST_value, individual_ancestry_frequencies = ancestry_value,
                            allelewise_ancestry_frequency = allele_frequency)
+                             
 
   # assign class
   class(structure_output) <- c("destruct", class(structure_output))
