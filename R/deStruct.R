@@ -1,4 +1,4 @@
-function(file){
+deStruct <- function(file){
   #open the connection to a structure file
   mycon <- file(file, open = "r")
   mylines <- readLines(mycon, warn = FALSE)#warn=FALSE because STRUCTURE files have a missing  End of line marker that throws a warning
