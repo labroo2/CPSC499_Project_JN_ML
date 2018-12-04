@@ -76,6 +76,7 @@ deStruct <- function(file){
   #get the locus string into a matrix
   Locus_split <- strsplit(Locus, " ")
   Locus_final <- t(sapply(Locus_split, function(x) x[x !=":"]))
+  colnames(Locus_final) <- c("loc", "locnum", "Locus")
   #get the missing data well formatted
   missing <- trimws(gsub("([[:alpha:]]|%)","",missing_data), which = "both")
   #format Allele_A and b
@@ -89,12 +90,14 @@ deStruct <- function(file){
   Allele_2 <- Allele_B_split
   Allele_1[which(Allele_A_split[,1] == 2),] <- Allele_B_split[which(Allele_A_split[,1] == 2),]
   Allele_2[which(Allele_B_split[,1] == 1),] <- Allele_A_split[which(Allele_B_split[,1] == 1),]
+  Allele_1 <- Allele_1[,2:ncol(Allele_1)]
+  Allele_2 <- Allele_2[,2:ncol(Allele_2)]
+  colnames(Allele_1) <- c("Proportion_A1", paste("Allele1_clust", 1:(ncol(Allele_1)-1), sep = ""))
+  colnames(Allele_2) <- c("Proportion_A2", paste("Allele2_clust", 1:(ncol(Allele_2)-1), sep = ""))
   #combine this to a dataframe
   allele_frequency <- cbind(Locus_final[,3],missing,Allele_1,Allele_2)
   allele_frequency <- as.data.frame(allele_frequency)
-  colnames(allele_frequency) <- c("Locus","missing","Allele_1","Proportion_A1",
-                                  "Allele1_clust1","Allele1_clust2","Allele_2","Proportion_A2",
-                                  "Allele2_clust1","Allele2_clust2")
+  names(allele_frequency)[1] <- "Locus"
   
   #subset this by the empty line beween each loci
   close(mycon)
