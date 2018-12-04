@@ -1,5 +1,4 @@
-#this function takes a filename corresponding to STRUCTURE output and creates an object of the class deStruct
-deStruct <- function(file){
+function(file){
   #open the connection to a structure file
   mycon <- file(file, open = "r")
   mylines <- readLines(mycon, warn = FALSE)#warn=FALSE because STRUCTURE files have a missing  End of line marker that throws a warning
@@ -14,7 +13,7 @@ deStruct <- function(file){
   run_params <- strsplit(gsub(" ","",run_params), " ")
   run_parameters <- data.frame(parameter=gsub("[[:digit:]]","",run_params),
                                Value=gsub("([[:alpha:]]|[[:punct:]])","",run_params),stringsAsFactors = FALSE)
-
+  
   ###Determine the number of clusters###
   inferred <- grep("Inferred Clusters", mylines)
   inferred_clus <- mylines[(inferred+1):(inferred+2)]
@@ -97,24 +96,15 @@ deStruct <- function(file){
   #combine this to a dataframe
   allele_frequency <- cbind(Locus_final[,3],missing,Allele_1,Allele_2)
   allele_frequency <- as.data.frame(allele_frequency)
-<<<<<<< HEAD
   names(allele_frequency)[1] <- "Locus"
   
-=======
-  colnames(allele_frequency) <- c("Locus","missing","Allele_1","Proportion_A1",
-                                  "Allele1_clust1","Allele1_clust2","Allele_2","Proportion_A2",
-                                  "Allele2_clust1","Allele2_clust2")
-  #colnames(allele_frequency) <- c("Locus","missing",paste("cluster_",1:length(inferred_cluster$cluster),sep = ""))
->>>>>>> 789a7ca79bef3a7a9993ed627ff5c9edea9f0fde
   #subset this by the empty line beween each loci
   close(mycon)
   structure_output <- list(run_parameters = run_parameters, inferred_clusters = inferred_cluster, 
                            HE = expected_heterozygosity, FST= mean_FST_value, individual_ancestry_frequencies = ancestry_value,
                            allelewise_ancestry_frequency = allele_frequency)
-                             
-
+  
   # assign class
   class(structure_output) <- c("destruct", class(structure_output))
   return(structure_output)
 }
-
