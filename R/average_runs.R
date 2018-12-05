@@ -69,7 +69,7 @@ average_runs <- function(deStruct_list){
   allele_average <- apply(allele_array, 1:2, mean)
   dimnames(allele_average) <- list(rownames(allele_freqs[[1]]), colnames(allele_freqs[[1]]))
   allele_averaged <- as.data.frame(allele_average)
-  allele_averaged[,1] <- allele_array[[1]][1] #fix the locus column, which can't be converted to numeric in workflow above
+  allele_averaged[,1] <- allele_freqs[[1]][1] #fix the locus column, which can't be converted to numeric in workflow above
   names(allele_averaged[,1]) <- "Locus" #name the locus column
   
   #convert all numeric values back to factors to be compatible with deStruct
