@@ -13,7 +13,7 @@ deStruct <- function(file){
   run_params <- strsplit(gsub(" ","",run_params), " ")
   run_parameters <- data.frame(parameter=gsub("[[:digit:]]","",run_params),
                                Value=gsub("([[:alpha:]]|[[:punct:]])","",run_params),stringsAsFactors = FALSE)
-  
+  run_parameters[,2] <- as.numeric(run_parameters[,2])
   ###Determine the number of clusters###
   inferred <- grep("Inferred Clusters", mylines)
   inferred_clus <- mylines[(inferred+1):(inferred+2)]
@@ -21,7 +21,7 @@ deStruct <- function(file){
   inferred_clus <- sapply(inferred_clus, function(x) x[x != ""])
   inferred_cluster <- as.data.frame(inferred_clus)
   colnames(inferred_cluster) <-c("cluster","proportion")
-  
+  inferred_cluster[,2] <- as.numeric(as.character(inferred_cluster[,2]))
   ###Expected Heterozygosity###
   E_heterozygosity <- grep("expected heterozygosity", mylines)
   heterozygosity <- mylines[(E_heterozygosity+1):(E_heterozygosity + length(inferred_cluster$cluster))]
@@ -29,7 +29,7 @@ deStruct <- function(file){
   heterozygosity <- t(sapply(heterozygosity, function(x) x[x != ""]))
   expected_heterozygosity <- as.data.frame(heterozygosity[,c(2,4)])
   colnames(expected_heterozygosity) <-c("cluster","HE")
-  
+  expected_heterozygosity[,2] <- as.numeric(as.character(expected_heterozygosity[,2]))
   ###FST values###
   FST <- grep("Mean value of Fst_1", mylines)
   FST_values <- mylines[FST:(FST + length(inferred_cluster$cluster)-1)]
@@ -38,7 +38,7 @@ deStruct <- function(file){
   #remove white spaces to the right
   mean_FST_value <- as.data.frame(trimws(FST_values,which = "right"))
   colnames(mean_FST_value) <- c("cluster","FST")
-  
+  mean_FST_value[,2] <- as.numeric(as.character(mean_FST_value[,2]))
   ###INFERRERD ANCESTRY OF INDIVIDUALS#####
   ancestry <- grep("Inferred ancestry of individuals:", mylines)
   #get the inferred ancestry by the number of individuals in run parameters
@@ -58,7 +58,10 @@ deStruct <- function(file){
   ancestry_value <- data.frame(ancestry_value)
   #Add column names to the dataframe
   colnames(ancestry_value) <- c("percent_missing",paste("cluster_",1:length(inferred_cluster$cluster),sep = ""))
-  
+  for (i in 1:ncol(ancestry_value)){
+    ancestry_value[,i] <- as.numeric(as.character(ancestry_value[,i]))
+  }
+
   ###Estimated Allele Frequency###
   allele_start <- grep("Estimated Allele Frequencies in each cluster", mylines)
   allele_end <- grep("Values of parameters used in structure:", mylines)
@@ -97,14 +100,18 @@ deStruct <- function(file){
   allele_frequency <- cbind(Locus_final[,3],missing,Allele_1,Allele_2)
   allele_frequency <- as.data.frame(allele_frequency)
   names(allele_frequency)[1] <- "Locus"
-  
+  #formart the datatypes of the columns
+  for(i in 2:ncol(allele_frequency)){
+    allele_frequency[,i] <- as.numeric(as.character(allele_frequency[,i]))
+  }
+  allele_frequency[,1] <- as.character(allele_frequency[,1])
   #subset this by the empty line beween each loci
   close(mycon)
   structure_output <- list(run_parameters = run_parameters, inferred_clusters = inferred_cluster, 
                            HE = expected_heterozygosity, FST= mean_FST_value, individual_ancestry_frequencies = ancestry_value,
                            allelewise_ancestry_frequency = allele_frequency)
-  
   # assign class
   class(structure_output) <- c("destruct", class(structure_output))
   return(structure_output)
 }
+
