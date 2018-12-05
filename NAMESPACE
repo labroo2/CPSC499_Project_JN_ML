@@ -1,4 +1,4 @@
-export(deStruct, structure_plot, extraparams, mainparams, structure_scriptwriter)
+export(deStruct, structure_plot, extraparams, mainparams, structure_scriptwriter, average_runs)
 
 
 S3method(structure_plot, destruct)
