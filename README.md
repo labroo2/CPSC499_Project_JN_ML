@@ -2,7 +2,7 @@
 This repository carries functions to facilitate working with the program STRUCTURE.
 Scripts which process STRUCTURE output have only been optimized for the ADMIXTURE model and the following settings:
 
-#define LABEL 1 
+#define LABEL 1
 #define POPDATA 1 
 #define POPFLAG 1 
 #define LOCDATA 0 
