@@ -11,7 +11,7 @@ average_runs <- function(deStruct_list){
   #convert factor to numeric
   num_clust <- list()
   for(i in 1:length(inferred_clusters)){
-    num_clust[[i]] <- as.vector(as.numeric(as.character(inferred_clusters[[i]][[2]])))
+    num_clust[[i]] <- inferred_clusters[[i]][[2]]
   }
   datframe_clust <- as.data.frame(num_clust, fix.empty.names = FALSE) #convert list to dataframe
   clust_means <- rowMeans(datframe_clust) #get cluster averages
@@ -23,7 +23,7 @@ average_runs <- function(deStruct_list){
   HE_values <- lapply(deStruct_list, '[[', 3)
   num_HE <- list()
   for(i in 1:length(HE_values)){
-    num_HE[[i]] <- as.numeric(as.character(HE_values[[i]][[2]]))
+    num_HE[[i]] <- HE_values[[i]][[2]]
   }
   datframe_HE <- as.data.frame(num_HE, fix.empty.names = FALSE)
   HE_means <- rowMeans(datframe_HE)
@@ -38,7 +38,7 @@ average_runs <- function(deStruct_list){
   FST_values <- lapply(deStruct_list, '[[', 4)
   num_FST <- list()
   for(i in 1:length(FST_values)){
-    num_FST[[i]] <- as.numeric(as.character(FST_values[[i]][[2]]))
+    num_FST[[i]] <- FST_values[[i]][[2]]
   }
   datframe_FST <- as.data.frame(num_FST, fix.empty.names = FALSE)
   FST_means <- rowMeans(datframe_FST)
@@ -47,11 +47,6 @@ average_runs <- function(deStruct_list){
   
   #average the individual_ancestry_frequencies
   ind_qvals <- lapply(deStruct_list, '[[', 5)
-  #convert factors to numeric for all columns at once
-  for(i in 1:length(ind_qvals)){
-    for(j in 1:length(ind_qvals[[1]]))
-      ind_qvals[[i]][[j]] <- as.numeric(as.character(ind_qvals[[i]][[j]]))
-  }
   #make an array of the three ancestry dataframes
  ind_array <- array(unlist(ind_qvals), c(dim(ind_qvals[[1]])[1], dim(ind_qvals[[1]])[2], length(ind_qvals)))
  ind_average <- apply(ind_array, 1:2, mean) #average across the 3rd dimension of the array for each row and column
@@ -71,23 +66,6 @@ average_runs <- function(deStruct_list){
   allele_averaged <- as.data.frame(allele_average)
   allele_averaged[,1] <- allele_freqs[[1]][1] #fix the locus column, which can't be converted to numeric in workflow above
   names(allele_averaged[,1]) <- "Locus" #name the locus column
-  
-  #convert all numeric values back to factors to be compatible with deStruct
-  for(i in 1:ncol(inferred_clusters_averaged)){
-    inferred_clusters_averaged[,i] <- as.factor(inferred_clusters_averaged[,i])
-  }
-  for(i in 1:ncol(HE_averaged)){
-    HE_averaged[,i] <- as.factor(HE_averaged[,i])
-  }
-  for(i in 1:ncol(FST_averaged)){
-    FST_averaged[,i] <- as.factor(FST_averaged[,i])
-  }
-  for(i in 1:ncol(ind_averaged)){
-    ind_averaged[,i] <- as.factor(ind_averaged[,i])
-  }
-  for(i in 1:ncol(allele_averaged)){
-    allele_averaged[,i] <- as.factor(allele_averaged[,i])
-  }
   
   #make deStruct output
   averaged_deStruct <- list(run_parameters = run_params, inferred_clusters = inferred_clusters_averaged, HE = HE_averaged,
