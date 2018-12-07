@@ -2,6 +2,19 @@
 This repository carries functions to facilitate working with the program STRUCTURE.
 Scripts which process STRUCTURE output have only been optimized for the ADMIXTURE model and the following settings:
 
+This package has 6 functions:
+deStruct - parses structure output storing information into a S3 class object with relevant information
+
+avarage_runs - This function averages across replications of STRUCTURE for a given value of K. Note that in this implementation, the user must ensure that the clusters are in a consistent order for the input.
+
+structure_plot - Visualize individual allele ancestries, to delineate the likely level of population subdivision
+
+mainparams -This functions generates the mainparams file needed for the program STRUCTURE v 2.3.
+
+extraparams - This functions generates the extraparams file needed for the program STRUCTURE v 2.3.
+
+structure_scriptwriter - This function writes scripts suitable for running STRUCTURE on a UNIX-based high-performance computing cluster up to a given number of populations and replications
+
 #define LABEL 1
 #define POPDATA 1 
 #define POPFLAG 1 
