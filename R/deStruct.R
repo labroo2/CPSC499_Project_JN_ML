@@ -1,5 +1,5 @@
 #this function takes a filename corresponding to STRUCTURE output and creates an object of the class deStruct
-file <- "3kcomp_filtered_noGM_default50000_k2r1_f"
+
 deStruct <- function(file){
   #open the connection to a structure file
   mycon <- file(file, open = "r")
@@ -127,4 +127,3 @@ deStruct <- function(file){
   class(structure_output) <- c("destruct", class(structure_output))
   return(structure_output)
 }
-

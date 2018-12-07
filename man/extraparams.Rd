@@ -1,6 +1,5 @@
 \name{extraparams}
 \alias{extraparams}
-%- Also NEED an '\alias' for EACH other topic documented here.
 \title{
 extraparams
 }
@@ -146,9 +145,6 @@ In words, the net nucleotide distance is the average probability that a pair of 
 (Boolean) Report acceptance rate of Metropolis update for q(i) (see METROFREQ).
 }
 }
-\details{
-%%  ~~ If necessary, more details than the description above ~~
-}
 \value{
 Writes the mainparams file.
 }
@@ -159,16 +155,4 @@ Falush, D., Stephens, M. & Pritchard, J. K. Inference of population structure us
 }
 \author{
 Marlee Labroo & Joyce Njuguna
-}
-\note{
-%%  ~~further notes~~
-}
-
-%% ~Make other sections like Warning with \section{Warning }{....} ~
-
-\seealso{
-%% ~~objects to See Also as \code{\link{help}}, ~~~
-}
-\examples{
-
 }

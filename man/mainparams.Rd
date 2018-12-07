@@ -82,9 +82,6 @@ mainparams(maxpops, burnin, numreps, infile, outfile, numinds, numloci, ploidy, 
 (int) For use with polyploids when RECESSIVEALLELES=1. Deﬁnes the code indicating that genotype data at a marker are unambiguous. Must not match MISSING or any allele value in the data.
 }
 }
-\details{
-%%  ~~ If necessary, more details than the description above ~~
-}
 \value{
 No value is returned; the mainparams file is output.
 }
@@ -95,7 +92,4 @@ Falush, D., Stephens, M. & Pritchard, J. K. Inference of population structure us
 }
 \author{
 Marlee Labroo & Joyce Njuguna
-}
-\note{
-%%  ~~further notes~~
 }

@@ -52,16 +52,6 @@ Specify the desired number of replications at a given value of K (number of popu
 Specify a basename for the scripts which will be output from this function, and used to run STRUCTURE.
 }
 }
-\details{
-%%  ~~ If necessary, more details than the description above ~~
-}
-\value{
-%%  ~Describe the value returned
-%%  If it is a LIST, use
-%%  \item{comp1 }{Description of 'comp1'}
-%%  \item{comp2 }{Description of 'comp2'}
-%% ...
-}
 \references{
 https://web.stanford.edu/group/pritchardlab/structure.html
 
@@ -69,13 +59,4 @@ Falush, D., Stephens, M. & Pritchard, J. K. Inference of population structure us
 }
 \author{
 Marlee Labroo & Joyce Njuguna
-}
-\note{
-%%  ~~further notes~~
-}
-
-%% ~Make other sections like Warning with \section{Warning }{....} ~
-
-\seealso{
-%% ~~objects to See Also as \code{\link{help}}, ~~~
 }
