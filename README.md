@@ -2,7 +2,8 @@
 This repository carries functions to facilitate working with the program STRUCTURE.
 Scripts which process STRUCTURE output have only been optimized for the ADMIXTURE model and the following settings:
 
-This package has 6 functions:
+This package has 6 functions
+
 deStruct - parses structure output storing information into a S3 class object with relevant information
 
 avarage_runs - This function averages across replications of STRUCTURE for a given value of K. Note that in this implementation, the user must ensure that the clusters are in a consistent order for the input.
