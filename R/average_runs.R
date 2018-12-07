@@ -8,7 +8,7 @@ average_runs <- function(deStruct_list){
   colnames(run_params) <- c("parameter", "Value")
   #average the inferred_clusters
   inferred_clusters <- lapply(deStruct_list, '[[', 2) #get inferred clusters slots from deStruct list
-  #convert factor to numeric
+  #get section needed
   num_clust <- list()
   for(i in 1:length(inferred_clusters)){
     num_clust[[i]] <- inferred_clusters[[i]][[2]]
