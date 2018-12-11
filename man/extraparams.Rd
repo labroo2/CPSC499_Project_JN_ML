@@ -9,7 +9,6 @@ This functions generates the extraparams file needed for the program STRUCTURE v
 \usage{
 extraparams(noadmix, linkage, usepopinfo, locprior, freqscorr, onefst, inferalpha, popalphas, alpha, inferlambda, popspecificlambda, lambda, fpriormean, fpriorsd, unifprioralpha, alphamax, log10rmin, log10rmax, log10propsd, log10rstart, gensback, migrprior, pfrompopflagonly, locispop, locpriorinit, maxlocprior, printnet, printlambda, printqsum, sitebysite, printqhat, updatefreq, printlikes, intermedsave, echodata, ancestdist, computeprob, admburnin, alphapropsd, startatpopinfo, randomize, seed, metrofreq, reporthitrate)
 }
-%- maybe also 'usage' for other objects documented here.
 \arguments{
   \item{noadmix}{
 (Boolean) Assume the model without admixture (Pritchard et al., 2000a). (Each individual is assumed to be completely from one of the K populations.) In the output, instead of printing the average value of Q as in the admixture case, the program prints the posterior probability that each individual is from each population. 1 = no admixture; 0 = model with admixture.

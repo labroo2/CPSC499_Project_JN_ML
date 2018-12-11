@@ -1,6 +1,5 @@
 \name{mainparams}
 \alias{mainparams}
-%- Also NEED an '\alias' for EACH other topic documented here.
 \title{
 mainparams
 }
@@ -10,7 +9,6 @@ This functions generates the mainparams file needed for the program STRUCTURE v 
 \usage{
 mainparams(maxpops, burnin, numreps, infile, outfile, numinds, numloci, ploidy, missing, onerowperind, label, popdata, popflag, locdata, phenotype, extracols, markernames, recessivealleles, mapdistances, phased, phaseinfo, markovphase, notambiguous)
 }
-%- maybe also 'usage' for other objects documented here.
 \arguments{
   \item{maxpops}{
 (int) Number of populations assumed for a particular run of the program. Pritchard et al. (2000a) call this K. Sometimes (depending on the nature of the data) there is a natural value of K that can be used, otherwise K can be estimated by checking the fit of the model at different values of K (see Section 5).

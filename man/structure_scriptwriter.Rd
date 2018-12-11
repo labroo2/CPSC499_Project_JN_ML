@@ -1,6 +1,5 @@
 \name{structure_scriptwriter}
 \alias{structure_scriptwriter}
-%- Also NEED an '\alias' for EACH other topic documented here.
 \title{
 structure_scriptwriter
 }
@@ -10,7 +9,6 @@ This function writes scripts suitable for running STRUCTURE on a UNIX-based high
 \usage{
 structure_scriptwriter(task_manager, module, mainparams, extraparams, stratparams, populations, numloci, numinds, input_file, output_file_base, seed, reps_per_k, script_basename)
 }
-%- maybe also 'usage' for other objects documented here.
 \arguments{
   \item{task_manager}{
 An object which holds user-defined text to be placed at the head of each script, and is intended to interact with a workload manager such as SLURM or TORQUE. 

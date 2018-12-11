@@ -1,6 +1,5 @@
 \name{average_runs}
 \alias{average_runs}
-%- Also NEED an '\alias' for EACH other topic documented here.
 \title{
 average_runs
 }
@@ -10,7 +9,6 @@ This function averages across replications of STRUCTURE for a given value of K. 
 \usage{
 average_runs(deStruct_list)
 }
-%- maybe also 'usage' for other objects documented here.
 \arguments{
   \item{deStruct_list}{
 a list of the deStruct objects to be averaged
@@ -22,19 +20,6 @@ Note that the objects in deStruct_list should be listed using list(), not c(), s
 \value{
 an object of the class deStruct
 }
-\references{
-%% ~put references to the literature/web site here ~
-}
 \author{
 Marlee Labroo & Joyce Njuguna
 }
-\note{
-%%  ~~further notes~~
-}
-
-%% ~Make other sections like Warning with \section{Warning }{....} ~
-
-\seealso{
-%% ~~objects to See Also as \code{\link{help}}, ~~~
-}
-

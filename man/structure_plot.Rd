@@ -15,7 +15,7 @@ structure_plot(object, ...)
 object of destruct S3 class
 }
   \item{\dots}{
-%%     ~~Describe \code{\dots} here~~
+any additional ggplot parameters
 }
 }
 

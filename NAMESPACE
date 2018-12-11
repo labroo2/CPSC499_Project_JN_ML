@@ -4,5 +4,6 @@ export(deStruct, structure_plot, extraparams, mainparams, structure_scriptwriter
 S3method(structure_plot, destruct)
 
 
-importFrom("ggplot2", "ggplot", "aes", "theme", "geom_bar", "element_blank")
+importFrom("ggplot2", "ggplot", "aes_string", "theme", "geom_bar", "element_blank")
 importFrom("viridis", "scale_color_viridis")
+importFrom("reshape", "melt")
