@@ -8,6 +8,6 @@ Authors@R: c(person("Marlee", "Labroo", email = "labroo2@illinois.edu",
                   role = c("aut", "cre")))
 Maintainer:Joyce Njuguna <njuguna2@illinois.edu> 
 Imports:reshape, ggplot2, viridis
-Description: This R package parses structure files storing information in a S3 class object that eases the downstrean analysis, the package has function to avarage across replications of structure and barplot individuals ancestry. 
+Description: This R package parses structure files storing information in a S3 class object that eases the downstream analysis, the package has function to avarage across replications of structure and barplot individuals ancestry. 
 License: GPL-3
 URL: https://github.com/labroo2/deStructure
