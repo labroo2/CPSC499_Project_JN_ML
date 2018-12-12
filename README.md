@@ -1,9 +1,9 @@
 # deStructure
-This repository carries functions to facilitate working with the program STRUCTURE.
+This repository holds the R package deStructure, which facilitates working with the program STRUCTURE (Pritchard et al., 2003).
 Scripts which process STRUCTURE output have only been optimized for the ADMIXTURE model with the flags below, i.e. no use of the
 POPINFO flag or MAPDISTANCES, etc.
 
-This package has 6 functions:
+This package, deStructure, has 6 functions:
 
 - deStruct - Parses structure output files and stores information in a S3 class object
 
