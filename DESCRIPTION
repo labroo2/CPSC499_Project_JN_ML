@@ -1,4 +1,4 @@
-Package: DeStruct
+Package: deStructure
 Version: 0.0
 Date: 2018-12-17
 Title: An S3 Class to work with structure files
@@ -8,6 +8,17 @@ Authors@R: c(person("Marlee", "Labroo", email = "labroo2@illinois.edu",
                   role = c("aut", "cre")))
 Maintainer:Joyce Njuguna <njuguna2@illinois.edu> 
 Imports:reshape, ggplot2, viridis
-Description: This R package parses structure files storing information in a S3 class object that eases the downstream analysis, the package has functions to avarage across replications of structure and barplot individuals ancestry. 
+Description: This R package, deStructure, holds functions that facilitate working with the program STRUCTURE (Pritchard et al., 2003).
+The functions mainparams and extraparams write the input files (excluding the genotype data) needed to run STRUCTURE, while structure_scriptwriter
+outputs bash scripts which run STRUCTURE through a given value of K clusters and n replications. The scripts are compatible with UNIX-based high
+performance computing clusters. After STRUCTURE is run, the function deStruct parses the output file into R and can import each file into an
+object of the S3 class deStruct. If clusters are ordered consistently within the deStruct objects, average_runs can correctly average across
+a list of deStruct objects which are replicated runs of STRUCTURE for a given value of K. Please note that in this implementation, the user
+must manually reorder clusters within the deStruct objects if needed, so that the clusters intended to align are in the same positions across
+files. Finally, structure_plot plots the Q values (ancestry) from each cluster for each individual in barplots.
+
+Please also note that the deStruct class only supports output files from STRUCTURE run with the parameters specified below at this time.
+In the future, we hope to add support for other STRUCTURE output filetypes as well as automatic ordering of clusters within deStruct objects.
+
 License: GPL-3
 URL: https://github.com/labroo2/deStructure
