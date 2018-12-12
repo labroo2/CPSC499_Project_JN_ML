@@ -80,7 +80,8 @@ average_runs <- function(deStruct_list){
   
   #make deStruct output
   averaged_deStruct <- list(run_parameters = run_params, inferred_clusters = inferred_clusters_averaged,
-                            HE = HE_averaged, FST = FST_averaged, individual_ancestry_frequences = ind_averaged,
+                            HE = HE_averaged, FST = FST_averaged,
+                            individual_ancestry_frequences = ind_averaged,
                             allelewise_ancestry_frequency = allele_averaged)
   #assign class
   class(averaged_deStruct) <- c("destruct", class(averaged_deStruct))

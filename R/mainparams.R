@@ -67,11 +67,10 @@ mainparams <- function(maxpops, burnin, numreps, infile, outfile, numinds,
                           "#define MARKOVPHASE", "#define NOTAMBIGUOUS")
   #remove parameters the user is not interested in specifying
   object_list <- object_list[is.null(object_list) == FALSE]
-
-  holder <- c()
-  for(i in 1:length(object_list)){
-    holder[i] <- paste(names(object_list)[i], object_list[i], sep = " ")
-  }
+  
+  #paste the options and their names 
+  holder <- paste(names(object_list), object_list, sep = " ")
+  
   #concatenate
   cat(holder, sep = "\n", file = "mainparams")
 }
