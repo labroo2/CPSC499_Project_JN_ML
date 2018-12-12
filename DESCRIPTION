@@ -17,7 +17,7 @@ the deStruct objects, average_runs can average across a list of deStruct objects
 a given value of K. Please note that in this implementation, the user must manually reorder clusters within the deStruct objects if 
 needed, so that the clusters intended be averaged across runs are aligned in the same positions across files. Finally, structure_plot 
 plots the Q values (ancestry) from each cluster for each individual in barplots. Please also note that the deStruct class only supports
-output files from STRUCTURE run with the parameters specified below at this time. In the future, we hope to add support for other
-STRUCTURE output filetypes as well as automatic ordering of clusters within deStruct objects.
+output files from STRUCTURE used with the parameters specified in the README file at this time. In the future, we hope to add support for
+more STRUCTURE output filetypes as well as automatic ordering of clusters within deStruct objects.
 License: GPL-3
 URL: https://github.com/labroo2/deStructure
