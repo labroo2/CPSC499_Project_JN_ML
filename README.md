@@ -7,7 +7,7 @@ This package has 6 functions:
 
 - deStruct - Parses structure output files and stores information in a S3 class object
 
-- avarage_runs - Averages across replications of STRUCTURE for a given value of K. Note that in this implementation, the user must ensure that the clusters are in a consistent order for the input.
+- average_runs - Averages across replications of STRUCTURE for a given value of K. Note that in this implementation, the user must ensure that the clusters are in a consistent order for the input.
 
 - structure_plot - Visualize individual allele ancestries, to delineate the likely level of population subdivision
 
