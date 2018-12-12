@@ -17,7 +17,7 @@ This package has 6 functions:
 
 - structure_scriptwriter - This function writes scripts suitable for running STRUCTURE on a UNIX-based high-performance computing cluster up to a given number of populations and replications
 
-Parameters for which output parsing was optimized:
+Parameters for which output parsing was optimized:  
 #define LABEL 1  
 #define POPDATA 0   
 #define POPFLAG 0  
