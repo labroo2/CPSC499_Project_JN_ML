@@ -4,7 +4,7 @@
 average_runs
 }
 \description{
-This function averages across replications of STRUCTURE for a given value of K. Note that in this implementation, the user must ensure that the clusters are in a consistent order for the input.
+This function averages across replications of STRUCTURE for a given value of K. Note that in this implementation, the user must ensure that the clusters to be averaged are in the same order across the listed deStruct objects.
 }
 \usage{
 average_runs(deStruct_list)

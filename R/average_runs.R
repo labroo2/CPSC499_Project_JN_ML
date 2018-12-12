@@ -1,5 +1,9 @@
-#this function averages values across runs of STRUCTURE at a given value of k for objects of the class deStruct
-#because clusters may be ordered differently in the file across replications, the user must rearrange the deStruct so that a fixed column references a given cluster
+#this function averages values across runs of STRUCTURE at a given value of k
+#for objects of the class deStruct
+####################################################################################################
+#because clusters may be ordered differently in the file across replications,
+#the user must rearrange the deStruct so that a fixed column references a given cluster
+####################################################################################################
 #in the future, we will implement an option for the function to guess the cluster orders
 
 average_runs <- function(deStruct_list){
@@ -49,9 +53,12 @@ average_runs <- function(deStruct_list){
   ind_qvals <- lapply(deStruct_list, '[[', 5)
   #make an array of the three ancestry dataframes
  ind_array <- array(unlist(ind_qvals), c(dim(ind_qvals[[1]])[1], dim(ind_qvals[[1]])[2], length(ind_qvals)))
- ind_average <- apply(ind_array, 1:2, mean) #average across the 3rd dimension of the array for each row and column
- dimnames(ind_average) <- list(rownames(ind_qvals[[1]]), colnames(ind_qvals[[1]])) #name the resulting dataframe consistently
- ind_averaged <- as.data.frame(ind_average) #make compatible with deStruct class
+ #average across the 3rd dimension of the array for each row and column
+ ind_average <- apply(ind_array, 1:2, mean) 
+ #name the resulting dataframe consistently
+ dimnames(ind_average) <- list(rownames(ind_qvals[[1]]), colnames(ind_qvals[[1]]))
+ #make compatible with deStruct class
+ ind_averaged <- as.data.frame(ind_average)
   
   #average the allelewise ancestry frequencies
   allele_freqs <- lapply(deStruct_list, '[[', 6)
@@ -60,16 +67,21 @@ average_runs <- function(deStruct_list){
       allele_freqs[[i]][[j]] <- as.numeric(as.character(allele_freqs[[i]][[j]]))
     }
   }
-  allele_array <- array(unlist(allele_freqs), c(dim(allele_freqs[[1]])[1], dim(allele_freqs[[1]])[2], length(allele_freqs)))
+  allele_array <- array(unlist(allele_freqs), c(dim(allele_freqs[[1]])[1],
+                                                dim(allele_freqs[[1]])[2],
+                                                length(allele_freqs)))
   allele_average <- apply(allele_array, 1:2, mean)
   dimnames(allele_average) <- list(rownames(allele_freqs[[1]]), colnames(allele_freqs[[1]]))
   allele_averaged <- as.data.frame(allele_average)
-  allele_averaged[,1] <- allele_freqs[[1]][1] #fix the locus column, which can't be converted to numeric in workflow above
-  names(allele_averaged[,1]) <- "Locus" #name the locus column
+  #fix the locus column, which can't be converted to numeric in workflow above
+  allele_averaged[,1] <- allele_freqs[[1]][1]
+  #name the locus column
+  names(allele_averaged[,1]) <- "Locus" 
   
   #make deStruct output
-  averaged_deStruct <- list(run_parameters = run_params, inferred_clusters = inferred_clusters_averaged, HE = HE_averaged,
-                            FST = FST_averaged, individual_ancestry_frequences = ind_averaged, allelewise_ancestry_frequency = allele_averaged)
+  averaged_deStruct <- list(run_parameters = run_params, inferred_clusters = inferred_clusters_averaged,
+                            HE = HE_averaged, FST = FST_averaged, individual_ancestry_frequences = ind_averaged,
+                            allelewise_ancestry_frequency = allele_averaged)
   #assign class
   class(averaged_deStruct) <- c("destruct", class(averaged_deStruct))
   return(averaged_deStruct)

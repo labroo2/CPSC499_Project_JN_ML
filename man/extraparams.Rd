@@ -7,7 +7,14 @@ extraparams
 This functions generates the extraparams file needed for the program STRUCTURE v 2.3. The usage information is taken directly from the STRUCTURE documentation where appropriate. Note that options described as Boolean here take values of 1 and 0, where 1 = Yes and 0 = No, not TRUE and FALSE.
 }
 \usage{
-extraparams(noadmix, linkage, usepopinfo, locprior, freqscorr, onefst, inferalpha, popalphas, alpha, inferlambda, popspecificlambda, lambda, fpriormean, fpriorsd, unifprioralpha, alphamax, log10rmin, log10rmax, log10propsd, log10rstart, gensback, migrprior, pfrompopflagonly, locispop, locpriorinit, maxlocprior, printnet, printlambda, printqsum, sitebysite, printqhat, updatefreq, printlikes, intermedsave, echodata, ancestdist, computeprob, admburnin, alphapropsd, startatpopinfo, randomize, seed, metrofreq, reporthitrate)
+extraparams(noadmix, linkage, usepopinfo, locprior, freqscorr, onefst, inferalpha,
+              popalphas, alpha, inferlambda, popspecificlambda, lambda, fpriormean,
+              fpriorsd, unifprioralpha, alphamax, log10rmin, log10rmax, log10propsd,
+              log10rstart, gensback, migrprior, pfrompopflagonly, locispop,
+              locpriorinit, maxlocprior, printnet, printlambda, printqsum,
+              sitebysite, printqhat, updatefreq, printlikes, intermedsave,
+              echodata, ancestdist, computeprob, admburnin, alphapropsd,
+              startatpopinfo, randomize, seed, metrofreq, reporthitrate)
 }
 \arguments{
   \item{noadmix}{
@@ -53,7 +60,7 @@ extraparams(noadmix, linkage, usepopinfo, locprior, freqscorr, onefst, inferalph
 (double) See FREQSCORR. The prior for Fk is taken to be Gamma with mean FPRIORMEAN, and standard deviation FPRIORSD. Our default settings place a lot of weight on small values of F. We find that this makes the algorithm sensitive to subtle structure, but at some increased risk of overestimating K (Falush et al., 2003a).
 }
   \item{unifprioralpha}{
-(double) Assume a uniform prior for alpha which runs between 0 and ALPHAMAX. This model seems to work fine; the alternative model (when UNIFPRIORALPHA=0) is to take alpha as having a Gamma prior, with mean ALPHAPRIORA × ALPHAPRIORB, and variance ALPHAPRIORA x ALPHAPRIORB2.
+(double) Assume a uniform prior for alpha which runs between 0 and ALPHAMAX. This model seems to work fine; the alternative model (when UNIFPRIORALPHA=0) is to take alpha as having a Gamma prior, with mean ALPHAPRIORA x ALPHAPRIORB, and variance ALPHAPRIORA x ALPHAPRIORB2.
 }
   \item{alphamax}{
 (double) Assume a uniform prior for alpha which runs between 0 and ALPHAMAX. This model seems to work fine; the alternative model (when UNIFPRIORALPHA=0) is to take alpha as having a Gamma prior, with mean ALPHAPRIORA x ALPHAPRIORB, and variance ALPHAPRIORA x ALPHAPRIORB2.
@@ -71,7 +78,7 @@ extraparams(noadmix, linkage, usepopinfo, locprior, freqscorr, onefst, inferalph
 (double) When the linkage model is used, the switch rate r is taken to have a uniform prior on a log scale, between LOG10RMIN and LOG10RMAX. These values need to be set by the user to make sense in terms of the scale of map units being used.
 }
   \item{gensback}{
-(int) This corresponds to G (Pritchard et al., 2000a). When using prior population information forindividuals (USEPOPINFO=1), the programtests whether each individual has an immigrant ancestor in the last G generations, where G = 0 corresponds to the individual being an immigrant itself. In order to have decent power, G should be set fairly small (2, say) unless the data are highly informative.
+(int) This corresponds to G (Pritchard et al., 2000a). When using prior population information forindividuals (USEPOPINFO=1), the program tests whether each individual has an immigrant ancestor in the last G generations, where G = 0 corresponds to the individual being an immigrant itself. In order to have decent power, G should be set fairly small (2, say) unless the data are highly informative.
 }
   \item{migrprior}{
 (double) Must be in [0,1]. This is v in Pritchard et al. (2000a). Sensible values might be in the range 0.001 - 0.1.
@@ -102,7 +109,7 @@ In words, the net nucleotide distance is the average probability that a pair of 
 (Boolean) (Linkage model) Print a complete summary of assignment probabilities for every genotype in the data. This is printed to a separate file with the suffix "s". This file can be big!
 }
   \item{printqhat}{
-(Boolean) When this is turned on, the point estimate for Q is not only printed into the main results file, but also into a separate file with suﬃx "q". This file is required in order to run the companion program STRAT.
+(Boolean) When this is turned on, the point estimate for Q is not only printed into the main results file, but also into a separate file with suffix "q". This file is required in order to run the companion program STRAT.
 }
   \item{updatefreq}{
 (int) Frequency of printing updates to the screen. Set automatically if this =0
@@ -114,7 +121,7 @@ In words, the net nucleotide distance is the average probability that a pair of 
 (int) If you're impatient to see preliminary results before the end of the run, you can have results printed to file at intervals during the MCMC run. A total of INTERMEDSAVE such files are printed, at equal intervals following the completion of the BURNIN. Turn this off by setting to 0. Names of these files created using OUTFILE name.
 }
   \item{echodata}{
-(Boolean) Print a brief summary of the data set to the screen and output ﬁle. (Prints the beginnings and ends of the top and bottom lines of the input ﬁle to allow the user to check that it has been read correctly.)
+(Boolean) Print a brief summary of the data set to the screen and output file. (Prints the beginnings and ends of the top and bottom lines of the input file to allow the user to check that it has been read correctly.)
 }
   \item{ancestdist}{
 (Boolean) Collect information about the distribution of Q for each individual, as well as just estimating the mean. When this is turned on, the output file includes the left- and right-hand ends of the probability intervals for each q(i). (A probability interval is the Bayesian analog of a confidence interval.) The values printed show the middle 100p percent of the probability interval, where p is a number in the range 0.0 to 1.0 and is set using ANCESTPINT. The distribution of Q is estimated by recording the number of hits in each of a number of boxes between 0 and 1, to form a sort of histogram. The width of these boxes, which are of equal size, is set using NUMBOXES.
@@ -129,7 +136,7 @@ In words, the net nucleotide distance is the average probability that a pair of 
 (double) The Metropolis-Hastings update step for alpha involves picking a value alpha from a Normal with mean alpha and standard deviation ALPHAPROPSD> 0. The value of ALPHAPROPSD does not affect the asymptotic behaviour of the Markov chain, but may have a substantial impact on the rate of convergence. If there is a lot of information about alpha, small values of ALPHAPROPSD are preferable to obtain a reasonable acceptance rate. If there's not much information about alpha, larger values produce better mixing.
 }
   \item{startatpopinfo}{
-(Boolean) Use given populations as the initial condition for population origins. (Need POPDATA==1). This option provides a check that the Markov chain is converging properly in cases where you expected the inferred structure to match the input labels, and it did not. This option assumes that the PopData in the input ﬁle are between 1 and k where k ≤MAXPOPS. Individuals for whom the PopData are not in this range are initialized at random.
+(Boolean) Use given populations as the initial condition for population origins. (Need POPDATA==1). This option provides a check that the Markov chain is converging properly in cases where you expected the inferred structure to match the input labels, and it did not. This option assumes that the PopData in the input file are between 1 and k where k is less than or equal to MAXPOPS. Individuals for whom the PopData are not in this range are initialized at random.
 }
   \item{randomize}{
 (Boolean) Use a different random number seed for each run, taken from the system clock. (See also SEED.)

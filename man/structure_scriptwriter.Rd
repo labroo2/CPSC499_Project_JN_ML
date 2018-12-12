@@ -4,10 +4,12 @@
 structure_scriptwriter
 }
 \description{
-This function writes scripts suitable for running STRUCTURE on a UNIX-based high-performance computing cluster up to a given number of populations and replications.
+This function writes bash scripts suitable for running STRUCTURE on a UNIX-based high-performance computing cluster up to a given number of populations and replications.
 }
 \usage{
-structure_scriptwriter(task_manager, module, mainparams, extraparams, stratparams, populations, numloci, numinds, input_file, output_file_base, seed, reps_per_k, script_basename)
+structure_scriptwriter(task_manager, module, mainparams, extraparams, stratparams,
+                        populations, numloci, numinds, input_file, output_file_base,
+                        seed, reps_per_k, script_basename)
 }
 \arguments{
   \item{task_manager}{
