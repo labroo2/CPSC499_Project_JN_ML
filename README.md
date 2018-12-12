@@ -1,12 +1,13 @@
 # deStructure
 This repository carries functions to facilitate working with the program STRUCTURE.
-Scripts which process STRUCTURE output have only been optimized for the ADMIXTURE model and the following settings:
+Scripts which process STRUCTURE output have only been optimized for the ADMIXTURE model with the flags below, i.e. no use of the
+POPINFO flag or MAPDISTANCES, etc.
 
-This package has 6 functions
+This package has 6 functions:
 
-- deStruct - parses structure output storing information into a S3 class object with relevant information
+- deStruct - Parses structure output files and stores information in a S3 class object
 
-- avarage_runs - This function averages across replications of STRUCTURE for a given value of K. Note that in this implementation, the user must ensure that the clusters are in a consistent order for the input.
+- avarage_runs - Averages across replications of STRUCTURE for a given value of K. Note that in this implementation, the user must ensure that the clusters are in a consistent order for the input.
 
 - structure_plot - Visualize individual allele ancestries, to delineate the likely level of population subdivision
 
@@ -16,9 +17,10 @@ This package has 6 functions
 
 - structure_scriptwriter - This function writes scripts suitable for running STRUCTURE on a UNIX-based high-performance computing cluster up to a given number of populations and replications
 
+Parameters for which output parsing was optimized:
 #define LABEL 1  
-#define POPDATA 1   
-#define POPFLAG 1  
+#define POPDATA 0   
+#define POPFLAG 0  
 #define LOCDATA 0  
 #define PHENOTYPE 0   
 #define MARKERNAMES 1   
@@ -35,7 +37,7 @@ This package has 6 functions
 #define NUMREPS 50000  
 #define NOADMIX 0  
 #define LINKAGE 0  
-#define USEPOPINFO 1  
+#define USEPOPINFO 0  
 #define LOCPRIOR 0  
 #define INFERALPHA 1  
 #define ALPHA 1.0  
