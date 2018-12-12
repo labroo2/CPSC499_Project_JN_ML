@@ -4,7 +4,7 @@
 extraparams
 }
 \description{
-This functions generates the extraparams file needed for the program STRUCTURE v 2.3. The flag descriptions are taken from the STRUCTURE documentation. Note that options described as Boolean here take values of 1 and 0, where 1 = Yes and 0 = No-- not TRUE and FALSE.
+This functions generates the extraparams file needed for the program STRUCTURE v 2.3. The usage information is taken directly from the STRUCTURE documentation where appropriate. Note that options described as Boolean here take values of 1 and 0, where 1 = Yes and 0 = No, not TRUE and FALSE.
 }
 \usage{
 extraparams(noadmix, linkage, usepopinfo, locprior, freqscorr, onefst, inferalpha, popalphas, alpha, inferlambda, popspecificlambda, lambda, fpriormean, fpriorsd, unifprioralpha, alphamax, log10rmin, log10rmax, log10propsd, log10rstart, gensback, migrprior, pfrompopflagonly, locispop, locpriorinit, maxlocprior, printnet, printlambda, printqsum, sitebysite, printqhat, updatefreq, printlikes, intermedsave, echodata, ancestdist, computeprob, admburnin, alphapropsd, startatpopinfo, randomize, seed, metrofreq, reporthitrate)
