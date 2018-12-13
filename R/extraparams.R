@@ -12,7 +12,7 @@ extraparams <- function(noadmix = 0, linkage = 0, usepopinfo = 0, locprior = 0,
                         printlikes = NULL, intermedsave = NULL, echodata = NULL,
                         ancestdist = 0, computeprob = 1, admburnin = NULL,
                         alphapropsd = 0.025, startatpopinfo = 0, randomize = NULL,
-                        seed = NULL, metrofreq = 10, reporthitrate = NULL){
+                        seed = NULL, metrofreq = 10, reporthitrate = NULL, outpath){
   #check for errors
   #check that popinfo = 1 if gensback, migrprior, or pfrompopflagonly is specified
   if(!is.null(gensback) && !is.null(usepopinfo)){
@@ -147,5 +147,5 @@ extraparams <- function(noadmix = 0, linkage = 0, usepopinfo = 0, locprior = 0,
   #paste together the options
   holder <- paste(name_list, object_list, sep = " ")
   #concatenate
-  cat(holder, sep = "\n", file = "extraparams")
+  cat(holder, sep = "\n", file = outpath)
 }

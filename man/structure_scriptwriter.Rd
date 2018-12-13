@@ -14,7 +14,7 @@ structure_scriptwriter(task_manager, module, mainparams = NULL, extraparams = NU
 }
 \arguments{
   \item{task_manager}{
-(string) user-defined text to be placed at the head of each script which is intended to interact with a workload manager such as SLURM or TORQUE. 
+(string) user-defined text to be placed at the head of each script which is intended to run a workload manager such as SLURM or TORQUE. 
 }
   \item{module}{
 (string) The name of the module to be loaded.
@@ -64,12 +64,11 @@ Marlee Labroo & Joyce Njuguna
 \examples{
 #set a temporary working directory to hold output files
 setwd(tempdir())
-#sample task_manager object for SLURM
-biocluster <- paste("#!/bin/bash", "#SBATCH -p normal", "#SBATCH --mem=4g", " sep="\\n")
+
 #run structure_scriptwriter; output is in the temporary working directory
-structure_scriptwriter(task_manager = biocluster, module = "structurev2.3", 
-                       mainparams = NULL, extraparams = NULL, stratparams = NULL,
-                       populations = 3, numloci = NULL, numinds = NULL,
-                       input_file = "mydata.txt", output_file_base = "my_output_file",
-                       seed = NULL, reps_per_k = 3, script_basename = "myscript"")
+structure_scriptwriter(task_manager = NULL, module = "structurev2.3", 
+                        mainparams = NULL, extraparams = NULL, stratparams = NULL,
+                        populations = 3, numloci = NULL, numinds = NULL,
+                        input_file = "mydata.txt", output_file_base = "my_output_file",
+                        seed = NULL, reps_per_k = 3, script_basename = "myscript")
 }

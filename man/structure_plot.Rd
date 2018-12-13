@@ -27,9 +27,9 @@ Joyce Njuguna and Marlee Labroo
 }
 \examples{
 #import the example structure file installed with DeStruct
-mypath <- system.file("extdata", "myresults_default50000k2r1_f", package = "DeStruct")
+mypath <- system.file("extdata", "myresults_default50000k2r1_f", package = "deStructure")
 
-#Run function DeStruct on file
+#Run function deStruct on file
 myDestructObject <- deStruct(mypath)
 
 #make plots

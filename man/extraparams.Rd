@@ -20,7 +20,7 @@ extraparams(noadmix = 0, linkage = 0, usepopinfo = 0, locprior = 0,
             printlikes = NULL, intermedsave = NULL, echodata = NULL,
             ancestdist = 0, computeprob = 1, admburnin = NULL,
             alphapropsd = 0.025, startatpopinfo = 0, randomize = NULL,
-            seed = NULL, metrofreq = 10, reporthitrate = NULL)
+            seed = NULL, metrofreq = 10, reporthitrate = NULL, outpath)
 }
 \arguments{
   \item{noadmix}{
@@ -156,6 +156,9 @@ In words, the net nucleotide distance is the average probability that a pair of 
   \item{reporthitrate}{
 (Boolean) Report acceptance rate of Metropolis update for q(i) (see METROFREQ).
 }
+  \item{outpath}{
+(character) Full path of the intended output extraparams file
+}
 }
 \value{
 No value is returned; Writes the extraparams file.
@@ -169,8 +172,12 @@ Falush, D., Stephens, M. & Pritchard, J. K. Inference of population structure us
 Marlee Labroo & Joyce Njuguna
 }
 \examples{
-#make a temporary working directory
-setwd(tempdir())
+#make a temporary output file and path
+temp_extraparams <- tempfile(pattern = "", tmpdir = tempdir(), fileext = "")
+temp_extraparams <- unlist(strsplit(temp_extraparams, "\\\\"))
+temp_extraparams[length(extraparams) + 1] <- "extraparams"
+my_outpath <- paste(temp_extraparams, collapse = "/")
+
 #run extraparams function; output to temp directory
 extraparams(noadmix = 0, linkage = 0, usepopinfo = 0, locprior = 0, 
             freqscorr = 1, onefst = 0, inferalpha = 1, popalphas = 0,
@@ -185,5 +192,5 @@ extraparams(noadmix = 0, linkage = 0, usepopinfo = 0, locprior = 0,
             printlikes = NULL, intermedsave = NULL, echodata = NULL,
             ancestdist = 0, computeprob = 1, admburnin = NULL,
             alphapropsd = 0.025, startatpopinfo = 0, randomize = NULL,
-            seed = NULL, metrofreq = 10, reporthitrate = NULL)
+            seed = NULL, metrofreq = 10, reporthitrate = NULL, my_outpath)
 }

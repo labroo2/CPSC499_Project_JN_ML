@@ -11,7 +11,7 @@ mainparams(maxpops = NULL, burnin = 10000, numreps = 50000, infile, outfile, num
            numloci, ploidy = 2, missing = -9, onerowperind = 0, label = 1,
            popdata = 0, popflag = 0, locdata = 0, phenotype = 0, extracols = 0,
            markernames = 1, recessivealleles = 0, mapdistances = 0, phased = 0,
-           phaseinfo = 0, markovphase = NULL, notambiguous = NULL)
+           phaseinfo = 0, markovphase = NULL, notambiguous = NULL, outpath)
 }
 \arguments{
   \item{maxpops}{
@@ -83,6 +83,9 @@ mainparams(maxpops = NULL, burnin = 10000, numreps = 50000, infile, outfile, num
   \item{notambiguous}{
 (int) For use with polyploids when RECESSIVEALLELES = 1. Defines the code indicating that genotype data at a marker are unambiguous. Must not match MISSING or any allele value in the data.
 }
+  \item{outpath}{
+ (character) Complete path for the output file
+}
 }
 \value{
 No value is returned; the mainparams file is output.
@@ -96,13 +99,17 @@ Falush, D., Stephens, M. & Pritchard, J. K. Inference of population structure us
 Marlee Labroo & Joyce Njuguna
 }
 \examples{
-#make a temporary working directory
-setwd(tempdir())
+#make a temporary output file and path
+temp_mainparams <- tempfile(pattern = "", tmpdir = tempdir(), fileext = "")
+temp_mainparams <- unlist(strsplit(temp_mainparams, "\\\\"))
+temp_mainparams[length(temp_mainparams) + 1] <- "mainparams"
+my_outpath <- paste(temp_mainparams, collapse = "/")
+
 #run mainparams function; output to temp directory
 mainparams(maxpops = NULL, burnin = 10000, numreps = 50000, infile = "mydata.txt",
            outfile = "my_output_file", numinds = "300", numloci = "300000",
            ploidy = 2, missing = -9, onerowperind = 0, label = 1,
            popdata = 0, popflag = 0, locdata = 0, phenotype = 0, extracols = 0,
            markernames = 1, recessivealleles = 0, mapdistances = 0, phased = 0,
-           phaseinfo = 0, markovphase = NULL, notambiguous = NULL)
+           phaseinfo = 0, markovphase = NULL, notambiguous = NULL, outpath = my_outpath)
 }

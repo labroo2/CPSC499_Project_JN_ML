@@ -36,7 +36,7 @@ An object of the class "destruct", which comprises of a list that has the variou
 Joyce Njuguna and Marlee Labroo
 }
 \examples{
-#import the example structure file installed with DeStruct
+#import the example structure file installed with deStructure
 mypath <- system.file("extdata", "myresults_default50000k2r1_f", package = "deStructure")
 
 #Run function DeStruct on file
