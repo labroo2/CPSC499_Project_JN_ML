@@ -15,44 +15,44 @@ extraparams <- function(noadmix = 0, linkage = 0, usepopinfo = 0, locprior = 0,
                         seed = NULL, metrofreq = 10, reporthitrate = NULL){
   #check for errors
   #check that popinfo = 1 if gensback, migrprior, or pfrompopflagonly is specified
-  if(is.null(gensback) == FALSE && is.null(usepopinfo) == FALSE){
+  if(!is.null(gensback) && !is.null(usepopinfo)){
     if(gensback > 0 && usepopinfo != 1){
       warning("usepopinfo must be turned on with a value of 1 to implement gensback.")
     }
   }
 
-  if(is.null(migrprior) == FALSE && is.null(usepopinfo) == FALSE){
+  if(!is.null(migrprior) && !is.null(usepopinfo)){
     if(migrprior > 0 && usepopinfo != 1){
       warning("usepopinfo must be turned on with a value of 1 to implement migrprior.")
     }
   }
   
-  if(is.null(pfrompopflagonly) == FALSE && is.null(usepopinfo) == FALSE){
+  if(!is.null(pfrompopflagonly) && !is.null(usepopinfo)){
     if(pfrompopflagonly > 0 && usepopinfo != 1){
     warning("usepopinfo must be turned on with a value of 1 to implement pfrompopflagonly.")
     }
   }
   
   #check that migrprior value is sensible
-  if(is.null(migrprior) == FALSE){
+  if(!is.null(migrprior)){
     if(migrprior < 0 | migrprior > 1) stop("migrprior must be between 0 and 1.")
   }
-  if(is.null(migrprior) == FALSE){
+  if(!is.null(migrprior)){
     if(migrprior < 0.001 | migrprior > 0.1){
       warning("Sensible values of migrprior generally range from 0.001 to 0.1")
     }
   }
   
   #if sitebysite is on, check that linkage is on
-  if(is.null(sitebysite) == FALSE && is.null(linkage) == FALSE){
+  if(!is.null(sitebysite) && !is.null(linkage)){
     if(sitebysite > 0 && linkage < 1){
     stop("linkage model must be turned on with a value of 1 to implement the sitebysite option.")
     }
   }
   
   #if locispop, locpriorinit, or maxlocprior are on, make sure locprior is on
-  if(is.null(locispop) == FALSE && is.null(locpriorinit) == FALSE &&
-     is.null(maxlocprior) == FALSE && is.null(locprior) == FALSE){
+  if(!is.null(locispop) && !is.null(locpriorinit) &&
+     !is.null(maxlocprior) && !is.null(locprior)){
     if(locispop > 0 | locpriorinit > 0 | maxlocprior > 0 && locprior != 1){
       stop("locprior must be turned on with a value of one to implement locispop,
          locpriorinit, and maxlocprior.")
