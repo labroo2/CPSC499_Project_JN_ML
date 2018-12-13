@@ -1,9 +1,9 @@
 #this function generates the mainparams file needed for STRUCTURE
-mainparams <- function(maxpops, burnin, numreps, infile, outfile, numinds,
-                       numloci, ploidy, missing, onerowperind, label, popdata,
-                       popflag, locdata, phenotype, extracols, markernames,
-                       recessivealleles, mapdistances, phased, phaseinfo,
-                       markovphase, notambiguous){
+mainparams <- function(maxpops = NULL, burnin = 50000, numreps, infile, outfile, numinds,
+                       numloci, ploidy = 2, missing = -9, onerowperind = 0, label = 1,
+                       popdata = 0, popflag = 0, locdata = 0, phenotype = 0, extracols = 0,
+                       markernames = 1, recessivealleles = 0, mapdistances = 0, phased = 0,
+                       phaseinfo = 0, markovphase = NULL, notambiguous = NULL){
   #check to make sure outfile is file prefix only
   if(length(grep("\\.", outfile)) != 0){
     warning("The outfile name includes a period-- check that only the file prefix
