@@ -171,7 +171,7 @@ Marlee Labroo & Joyce Njuguna
 \examples{
 #make a temporary working directory
 setwd(tempdir())
-#run mainparams function; output to temp directory
+#run extraparams function; output to temp directory
 extraparams(noadmix = 0, linkage = 0, usepopinfo = 0, locprior = 0, 
             freqscorr = 1, onefst = 0, inferalpha = 1, popalphas = 0,
             alpha = 1.0, inferlambda = 0, popspecificlambda = NULL,
