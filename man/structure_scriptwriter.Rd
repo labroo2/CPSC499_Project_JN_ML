@@ -65,7 +65,7 @@ Marlee Labroo & Joyce Njuguna
 #set a temporary working directory to hold output files
 setwd(tempdir())
 #sample task_manager object for SLURM
-biocluster <- paste("#!/bin/bash", "#SBATCH -p normal", "#SBATCH --mem=4g", " sep="\n")
+biocluster <- paste("#!/bin/bash", "#SBATCH -p normal", "#SBATCH --mem=4g", " sep="\\n")
 #run structure_scriptwriter; output is in the temporary working directory
 structure_scriptwriter(task_manager = biocluster, module = "structurev2.3", 
                        mainparams = NULL, extraparams = NULL, stratparams = NULL,
