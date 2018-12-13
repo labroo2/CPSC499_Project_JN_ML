@@ -1,4 +1,3 @@
-################################################################################
 #this function generates the extraparams file needed for STRUCTURE
 extraparams <- function(noadmix = 0, linkage = 0, usepopinfo = 0, locprior = 0, 
                         freqscorr = 1, onefst = 0, inferalpha = 1, popalphas = 0,
