@@ -52,7 +52,7 @@ Parameters for which output parsing was optimized:
 #define INFERLAMBDA 0  
 #define LAMBDA 1.0  
 #define COMPUTEPROB 1   
-#define PFROMPOPFLAGONLY 1   
+#define PFROMPOPFLAGONLY 0   
 #define ANCESTDIST 0  
 #define STARTATPOPINFO 0  
 #define METROFREQ 10  
