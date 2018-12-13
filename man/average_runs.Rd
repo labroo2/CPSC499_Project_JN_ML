@@ -23,3 +23,19 @@ an object of the class deStruct
 \author{
 Marlee Labroo & Joyce Njuguna
 }
+\examples{
+#import the example structure files installed with deStruct function
+mypath <- system.file("extdata", "myresults_default50000k2r1_f", package = "DeStruct")
+mypath2 <- system.file("extdata", "myresults_default50000k2r2_f", package = "DeStruct")
+mypath3 <- system.file("extdata", "myresults_default50000k2r3_f", package = "DeStruct")
+
+#Run function DeStruct on file
+k2r1 <- deStruct(mypath)
+k2r2 <- deStruct(mypath2)
+k2r3 <- deStruct(mypath3)
+
+#Since the clusters in these files are already consistently ordered, list and average them.
+k2_list <- list(k2r1, k2r2, k2r3)
+k2_ave <- average_runs(k2_list)
+#
+}

@@ -7,10 +7,11 @@ mainparams
 This functions generates the mainparams file needed for the program STRUCTURE v 2.3. The flag descriptions are taken from the STRUCTURE documentation. Note that options described as Boolean here take values of 1 and 0, where 1 = Yes and 0 = No-- not TRUE and FALSE.
 }
 \usage{
-mainparams(maxpops, burnin, numreps, infile, outfile, numinds, numloci,
-            ploidy, missing, onerowperind, label, popdata, popflag, locdata,
-            phenotype, extracols, markernames, recessivealleles, mapdistances,
-            phased, phaseinfo, markovphase, notambiguous)
+mainparams(maxpops = NULL, burnin = 10000, numreps = 50000, infile, outfile, numinds,
+           numloci, ploidy = 2, missing = -9, onerowperind = 0, label = 1,
+           popdata = 0, popflag = 0, locdata = 0, phenotype = 0, extracols = 0,
+           markernames = 1, recessivealleles = 0, mapdistances = 0, phased = 0,
+           phaseinfo = 0, markovphase = NULL, notambiguous = NULL)
 }
 \arguments{
   \item{maxpops}{
@@ -80,7 +81,7 @@ mainparams(maxpops, burnin, numreps, infile, outfile, numinds, numloci,
  (Boolean) The phase information follows a Markov model. See sections 2.2 and 9.6 for details.
 }
   \item{notambiguous}{
-(int) For use with polyploids when RECESSIVEALLELES=1. Defines the code indicating that genotype data at a marker are unambiguous. Must not match MISSING or any allele value in the data.
+(int) For use with polyploids when RECESSIVEALLELES = 1. Defines the code indicating that genotype data at a marker are unambiguous. Must not match MISSING or any allele value in the data.
 }
 }
 \value{
@@ -93,4 +94,15 @@ Falush, D., Stephens, M. & Pritchard, J. K. Inference of population structure us
 }
 \author{
 Marlee Labroo & Joyce Njuguna
+}
+\examples{
+#make a temporary working directory
+setwd(tempdir())
+#run mainparams function; output to temp directory
+mainparams(maxpops = NULL, burnin = 10000, numreps = 50000, infile = "mydata.txt",
+           outfile = "my_output_file", numinds = "300", numloci = "300000",
+           ploidy = 2, missing = -9, onerowperind = 0, label = 1,
+           popdata = 0, popflag = 0, locdata = 0, phenotype = 0, extracols = 0,
+           markernames = 1, recessivealleles = 0, mapdistances = 0, phased = 0,
+           phaseinfo = 0, markovphase = NULL, notambiguous = NULL)
 }

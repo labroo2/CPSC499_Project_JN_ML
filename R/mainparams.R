@@ -1,5 +1,5 @@
 #this function generates the mainparams file needed for STRUCTURE
-mainparams <- function(maxpops = NULL, burnin = 50000, numreps, infile, outfile, numinds,
+mainparams <- function(maxpops = NULL, burnin = 10000, numreps = 50000, infile, outfile, numinds,
                        numloci, ploidy = 2, missing = -9, onerowperind = 0, label = 1,
                        popdata = 0, popflag = 0, locdata = 0, phenotype = 0, extracols = 0,
                        markernames = 1, recessivealleles = 0, mapdistances = 0, phased = 0,

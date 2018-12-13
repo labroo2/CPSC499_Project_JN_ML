@@ -1,3 +1,9 @@
-^.*\.Rproj$
+^\.git$
 ^\.Rproj\.user$
-
+^\.gitattributes$
+^\.gitignore$
+^README\.md$
+^.*\.Rproj$
+^\.Rhistory$
+^\.RData$
+^LICENSE$
