@@ -99,12 +99,8 @@ Falush, D., Stephens, M. & Pritchard, J. K. Inference of population structure us
 Marlee Labroo & Joyce Njuguna
 }
 \examples{
-#make a temporary output file and path
-temp_mainparams <- tempfile(pattern = "", tmpdir = tempdir(), fileext = "")
-temp_mainparams <- unlist(strsplit(temp_mainparams, "\\\\"))
-temp_mainparams[length(temp_mainparams) + 1] <- "mainparams"
-my_outpath <- paste(temp_mainparams, collapse = "/")
-
+#make a temporary output file path
+my_outpath <- tempfile(pattern = "mainparams", tmpdir = tempdir(), fileext = "")
 #run mainparams function; output to temp directory
 mainparams(maxpops = NULL, burnin = 10000, numreps = 50000, infile = "mydata.txt",
            outfile = "my_output_file", numinds = "300", numloci = "300000",

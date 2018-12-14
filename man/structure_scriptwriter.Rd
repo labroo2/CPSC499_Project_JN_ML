@@ -62,13 +62,17 @@ Falush, D., Stephens, M. & Pritchard, J. K. Inference of population structure us
 Marlee Labroo & Joyce Njuguna
 }
 \examples{
-#set a temporary working directory to hold output files
-setwd(tempdir())
+#make a temporary output file path
+my_outpath <- tempfile(pattern = "", tmpdir = tempdir(), fileext = "")
 
-#run structure_scriptwriter; output is in the temporary working directory
+#run structure_scriptwriter; output is in the temporary files
 structure_scriptwriter(task_manager = NULL, module = "structurev2.3", 
-                        mainparams = NULL, extraparams = NULL, stratparams = NULL,
-                        populations = 3, numloci = NULL, numinds = NULL,
-                        input_file = "mydata.txt", output_file_base = "my_output_file",
-                        seed = NULL, reps_per_k = 3, script_basename = "myscript")
+                        mainparams = NULL, extraparams = NULL,
+                        stratparams = NULL, populations = 3, 
+                        numloci = NULL, numinds = NULL,
+                        input_file = "mydata.txt", 
+                        output_file_base = paste(my_outpath,
+                        "my_output_file", sep = "\\\\"),
+                        seed = NULL, reps_per_k = 3, 
+                        script_basename = "myscript")
 }

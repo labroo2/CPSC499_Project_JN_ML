@@ -173,11 +173,7 @@ Marlee Labroo & Joyce Njuguna
 }
 \examples{
 #make a temporary output file and path
-temp_extraparams <- tempfile(pattern = "", tmpdir = tempdir(), fileext = "")
-temp_extraparams <- unlist(strsplit(temp_extraparams, "\\\\"))
-temp_extraparams[length(extraparams) + 1] <- "extraparams"
-my_outpath <- paste(temp_extraparams, collapse = "/")
-
+my_outpath <- tempfile(pattern = "extraparams", tmpdir = tempdir(), fileext = "")
 #run extraparams function; output to temp directory
 extraparams(noadmix = 0, linkage = 0, usepopinfo = 0, locprior = 0, 
             freqscorr = 1, onefst = 0, inferalpha = 1, popalphas = 0,
