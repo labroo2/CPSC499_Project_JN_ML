@@ -1,5 +1,4 @@
 #this function takes a filename corresponding to STRUCTURE output and creates an object of the class deStruct
-source("R/format_functions.R")
 deStruct <- function(file){
   #read in the lines of a structure file
   mylines <- readLines(file, warn = FALSE)#warn=FALSE because STRUCTURE files have a missing  End of line marker that throws a warning
@@ -11,7 +10,7 @@ deStruct <- function(file){
   #get the run parameters lines
   run_param <- grep("Run parameters:", mylines)
   run_params <- mylines[(run_param + 1):(run_param + 5L)]
-  run_parameters <- get_run_param(run_params) #getrun_param function formats lines into a dataframe
+  run_parameters <- get_run_param(run_params) #get_run_param function formats lines into a dataframe
   
   ###Determine the number of clusters###
   inferred <- grep("Inferred Clusters", mylines)
@@ -26,9 +25,9 @@ deStruct <- function(file){
   ###FST values###
   FST <- grep("Mean value of Fst_1", mylines)
   FST_values <- mylines[FST:(FST + length(inferred_cluster$cluster) - 1)]
-  mean_FST_value <- get_FST_values(FST_values)
+  mean_FST_value <- get_FST_values(FST_values)#get_FST_values function formarts lines into a dataframe
   
-  ###Inferred ancestry of INDIindividualsVIDUALS###
+  ###Inferred ancestry of individuals###
   ancestry <- grep("Inferred ancestry of individuals:", mylines)
   #get the inferred ancestry by the number of individuals in run parameters
   number_of_individuals <- as.integer(run_parameters$Value[run_parameters$parameter == "individuals"])

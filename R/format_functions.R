@@ -6,7 +6,7 @@ get_run_param <- function(run_param_lines){
   return(run_parameter)
 }
 
-#Function to format inferred clusters to a data frame
+#Function to format inferred clusters lines to a data frame
 get_inferred_clus <- function(inferred_clus_lines){
   inferred_clus <- strsplit(inferred_clus_lines, " ")
   inferred_clus <- sapply(inferred_clus, function(x) x[x != ""])
@@ -19,7 +19,7 @@ get_inferred_clus <- function(inferred_clus_lines){
   return(inferred_cluster)
 }
 
-#Functionto formart Expected heterozygosity lines into a dataframe
+#Function to formart Expected heterozygosity lines into a dataframe
 get_expected_heterozygosity <- function(HE_lines){
   heterozygosity <- strsplit(HE_lines, " ")
   heterozygosity <- t(sapply(heterozygosity, function(x) x[x != ""]))
